@@ -1,4 +1,3 @@
-// Import necessary modules
 const express = require('express');
 const updataDatabase = require('./db/dataUpdater');
 
