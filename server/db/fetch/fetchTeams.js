@@ -42,7 +42,7 @@ async function fetchTeams() {
             const wins = teamDetails.team.record.items[0].stats.find(stat => stat.name === 'wins').value;
             const losses = teamDetails.team.record.items[0].stats.find(stat => stat.name === 'losses').value;
 
-            const name = team.name;
+            const name = team.displayName;
             const abbreviation = team.abbreviation;
             const logo = team.logos[0].href;
 
