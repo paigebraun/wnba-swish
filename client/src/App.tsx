@@ -1,13 +1,18 @@
-import NavBar from "./components/NavBar"
-import TeamCards from "./components/TeamCards"
+import { Route, Routes } from "react-router-dom";
+
+import Home from "./pages/Home";
+import TeamView from './pages/TeamView';
+
 
 function App() {
   return (
     <>
-      < NavBar />
-      < TeamCards />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/:teamName" element={<TeamView />} />
+      </Routes>
     </>
     )
 }
 
-export default App
+export default App;

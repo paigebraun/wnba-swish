@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Navigation } from 'swiper/modules';
 import SwiperCore from "swiper";
-import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 SwiperCore.use([Navigation]);
@@ -20,6 +20,9 @@ function TeamCards() {
     const [teams, setTeams] = useState<Team[]>([]);
     const [currentIndex, setCurrentIndex] = useState(2);
     const [isLoading, setIsLoading] = useState(true);
+    const [isDragging, setIsDragging] = useState(false);
+
+    const navigate = useNavigate();
 
     // Fetch teams from DB
     useEffect(() => {
@@ -52,6 +55,8 @@ function TeamCards() {
 
     // Calculate the transform style based on the circular index
     const calculateTransformStyle = (index: number) => {
+        if (isDragging) return 'none';
+
         const circularIndex = getCircularIndex(index);
         const circularCurrentIndex = getCircularIndex(currentIndex);
 
@@ -79,16 +84,16 @@ function TeamCards() {
 
         // Translate and rotate the immediate neighbors
         if (distanceFromCenter === 1) {
-            translateY = maxTranslateDistance;
-            translateX = isRightSide ? maxTranslateDistance : -maxTranslateDistance; 
-            rotateY = isRightSide ? maxRotateAngle * 1.5 : -maxRotateAngle * 1.5; 
+            translateY = maxTranslateDistance * 1.5;
+            translateX = isRightSide ? maxTranslateDistance : -maxTranslateDistance;
+            rotateY = isRightSide ? maxRotateAngle * 1.5 : -maxRotateAngle * 1.5;
         } else if (distanceFromCenter === 2) {
-            translateY = maxTranslateDistance * 4.5;
-            translateX = isRightSide ? maxTranslateDistance : -maxTranslateDistance; 
+            translateY = maxTranslateDistance * 6;
+            translateX = isRightSide ? maxTranslateDistance : -maxTranslateDistance;
             rotateY = isRightSide ? maxRotateAngle * 2.5 : -maxRotateAngle * 2.5;
         } else if (distanceFromCenter === 3) {
-            translateY = maxTranslateDistance * 9.5;
-            translateX = isRightSide ? maxTranslateDistance : -maxTranslateDistance; 
+            translateY = maxTranslateDistance * 12.5;
+            translateX = isRightSide ? maxTranslateDistance : -maxTranslateDistance;
             rotateY = isRightSide ? maxRotateAngle * 3 : -maxRotateAngle * 3;
         }
 
@@ -101,15 +106,22 @@ function TeamCards() {
         return westernTeams.includes(teamAbbr) ? 'Western Conference' : 'Eastern Conference';
     }
 
+    // Function to format team name for URL
+    function formatTeamName(name: string): string {
+        return name.toLowerCase().replace(/\s+/g, '-');
+    }
+
     return (
-        <div className="h-[80vh] flex justify-center items-center">
+        <div className="h-[80vh] flex justify-center items-center overflow-hidden">
             <div className="w-full max-w-screen-lg">
                 <Swiper
                     spaceBetween={0}
-                    slidesPerView={5}
+                    slidesPerView={4}
                     centeredSlides={true}
                     navigation={{ prevEl: ".swiper-button-prev", nextEl: ".swiper-button-next" }}
                     onSlideChange={(swiper) => setCurrentIndex(getCircularIndex(swiper.realIndex))}
+                    onTouchStart={() => setIsDragging(true)}
+                    onTouchEnd={() => setIsDragging(false)}
                     loop={true}
                     className="mySwiper overflow-visible"
                     initialSlide={2}
@@ -120,11 +132,17 @@ function TeamCards() {
 
                         return (
                             <SwiperSlide key={index} className="rounded-lg p-2">
-                                <div className={`flex justify-center p-4 rounded-lg transition-all ${currentIndex === circularIndex ? 'bg-wOrange' : 'bg-gray-100'}`} style={{ transform: transformStyle }}>
-                                    <img src={team.logo} alt={team.name} className="object-cover" />
-                                </div>
+                              <div
+                                className={`flex justify-center p-4 rounded-lg transition-all ${
+                                  currentIndex === circularIndex ? 'bg-wOrange' : 'bg-gray-100'
+                                }`}
+                                style={{ transform: transformStyle }}
+                                onClick={() => navigate(`/${formatTeamName(team.name)}`)}
+                              >
+                                <img src={team.logo} alt={team.name} className="object-cover cursor-pointer" />
+                              </div>
                             </SwiperSlide>
-                        );
+                          );
                     })}
                 </Swiper>
                 <div className="flex items-center justify-center mt-10 gap-6">
@@ -132,7 +150,18 @@ function TeamCards() {
                     <div className="flex flex-col items-center min-w-48">
                         {teams.length > 0 && <h2 className="font-bold text-xl">{teams[getCircularIndex(currentIndex)].name}</h2>}
                         {teams.length > 0 && <h2>{getConference(teams[getCircularIndex(currentIndex)].abbreviation)}</h2>}
-                        {teams.length > 0 && <h2 className="bg-green-300 mt-6 px-4 py-2 rounded font-bold">{teams[getCircularIndex(currentIndex)].wins} - {teams[getCircularIndex(currentIndex)].losses}</h2>}
+                        {teams.length > 0 && (
+                            <h2
+                                className={`
+                                mt-6 px-4 py-2 rounded font-bold
+                                ${teams[getCircularIndex(currentIndex)].wins >= teams[getCircularIndex(currentIndex)].losses + 2 ? 'bg-green-300' : ''}
+                                ${Math.abs(teams[getCircularIndex(currentIndex)].wins - teams[getCircularIndex(currentIndex)].losses) <= 1 ? 'bg-yellow-300' : ''}
+                                ${teams[getCircularIndex(currentIndex)].losses >= teams[getCircularIndex(currentIndex)].wins + 2 ? 'bg-red-300' : ''}
+                                `}
+                            >
+                                {teams[getCircularIndex(currentIndex)].wins} - {teams[getCircularIndex(currentIndex)].losses}
+                            </h2>
+                            )}
                     </div>
                     <button className="flex justify-center items-center w-7 h-7 rounded-full bg-wOrange text-white swiper-button-next"><FaArrowRight /></button>
                 </div>
