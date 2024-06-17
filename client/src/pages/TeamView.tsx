@@ -1,15 +1,16 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import TeamInfo from "../components/TeamInfo";
+import NavBar from "../components/NavBar";
 
-const TeamView: React.FC = () => {
-  const { teamName } = useParams<{ teamName: string }>();
+function TeamView() {
+    return (
+        <>
+            <NavBar />
+            <div className='mx-10'>
+                <TeamInfo />
+            </div>
+        </>
+    )
+}
 
-  return (
-    <div>
-      <h1>Team View for {teamName}</h1>
-      {/* Display more team details here */}
-    </div>
-  );
-};
 
 export default TeamView;

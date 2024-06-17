@@ -14,6 +14,7 @@ interface Team {
     losses: number;
     logo: string;
     abbreviation: string;
+    team_id: number;
 }
 
 function TeamCards() {
@@ -106,11 +107,6 @@ function TeamCards() {
         return westernTeams.includes(teamAbbr) ? 'Western Conference' : 'Eastern Conference';
     }
 
-    // Function to format team name for URL
-    function formatTeamName(name: string): string {
-        return name.toLowerCase().replace(/\s+/g, '-');
-    }
-
     return (
         <div className="h-[80vh] flex justify-center items-center overflow-hidden">
             <div className="w-full max-w-screen-lg">
@@ -133,12 +129,21 @@ function TeamCards() {
                         return (
                             <SwiperSlide key={index} className="rounded-lg p-2">
                               <div
-                                className={`flex justify-center p-4 rounded-lg transition-all ${
-                                  currentIndex === circularIndex ? 'bg-wOrange' : 'bg-gray-100'
-                                }`}
-                                style={{ transform: transformStyle }}
-                                onClick={() => navigate(`/${formatTeamName(team.name)}`)}
-                              >
+                                    className={`flex justify-center p-4 rounded-lg transition-all ${
+                                        currentIndex === circularIndex ? 'bg-wOrange' : 'bg-gray-100'
+                                    }`}
+                                    style={{ transform: transformStyle }}
+                                    onClick={() =>
+                                        navigate(`/team/${team.team_id}`, {
+                                            state: {
+                                                logo: team.logo,
+                                                name: team.name,
+                                                wins: team.wins,
+                                                losses: team.losses,
+                                            },
+                                        })
+                                    }
+                                >
                                 <img src={team.logo} alt={team.name} className="object-cover cursor-pointer" />
                               </div>
                             </SwiperSlide>
