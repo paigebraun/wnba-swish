@@ -3,6 +3,7 @@ const updataDatabase = require('./db/dataUpdater');
 const teamsRoute = require('./routes/teams');
 const teamStatsRoute = require('./routes/teamStats');
 const playerRoute = require('./routes/players');
+const gamesRoute = require('./routes/games');
 const cors = require('cors');
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(cors({
 app.use('/api', teamsRoute);
 app.use('/api', teamStatsRoute);
 app.use('/api', playerRoute);
+app.use('/api', gamesRoute);
 
 // Start the server
 app.listen(PORT, () => {
