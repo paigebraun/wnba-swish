@@ -42,17 +42,18 @@ async function fetchTeams() {
             const wins = teamDetails.team.record.items[0].stats.find(stat => stat.name === 'wins').value;
             const losses = teamDetails.team.record.items[0].stats.find(stat => stat.name === 'losses').value;
 
-            const name = team.displayName;
+            const displayName = team.displayName;
+            const name = team.name;
             const abbreviation = team.abbreviation;
             const logo = team.logos[0].href;
 
             const insertTeamQuery = `
-              INSERT INTO teams (espn_id, name, abbreviation, wins, losses, logo)
-              VALUES ($1, $2, $3, $4, $5, $6)
+              INSERT INTO teams (espn_id, name, display_name, abbreviation, wins, losses, logo)
+              VALUES ($1, $2, $3, $4, $5, $6, $7)
               ON CONFLICT (espn_id)
-              DO UPDATE SET name = EXCLUDED.name, abbreviation = EXCLUDED.abbreviation, logo = EXCLUDED.logo, wins = EXCLUDED.wins, losses = EXCLUDED.losses
+              DO UPDATE SET name = EXCLUDED.name, display_name = EXCLUDED.display_name, abbreviation = EXCLUDED.abbreviation, logo = EXCLUDED.logo, wins = EXCLUDED.wins, losses = EXCLUDED.losses
             `;
-            await client.query(insertTeamQuery, [teamId, name, abbreviation, wins, losses, logo]);
+            await client.query(insertTeamQuery, [teamId, name, displayName, abbreviation, wins, losses, logo]);
           }
         }
       }

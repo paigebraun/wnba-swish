@@ -8,7 +8,7 @@ const fetchAllShots = require('./fetch/fetchShots');
 // Update SQL tables
 const updataDatabase = async () => {
     try {
-        fetchTeams().catch(error => console.error('Error fetching and saving teams:', error));
+        //fetchTeams().catch(error => console.error('Error fetching and saving teams:', error));
         //fetchAllTeamStats().catch(error => console.error('Error fetching and saving team stats:', error));
         //fetchAllPlayers().catch(error => console.error('Error fetching and saving players:', error));
         //fetchAllGames().catch(error => console.error('Error fetching and saving games:', error));

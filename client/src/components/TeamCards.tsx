@@ -15,6 +15,7 @@ interface Team {
     logo: string;
     abbreviation: string;
     team_id: number;
+    display_name: string;
 }
 
 function TeamCards() {
@@ -137,7 +138,7 @@ function TeamCards() {
                                         navigate(`/team/${team.team_id}`, {
                                             state: {
                                                 logo: team.logo,
-                                                name: team.name,
+                                                name: team.display_name,
                                                 wins: team.wins,
                                                 losses: team.losses,
                                             },

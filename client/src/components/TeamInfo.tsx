@@ -63,7 +63,7 @@ const TeamInfo: React.FC = () => {
         </div>
         <div className="flex flex-col w-full">
           <div className="flex flex-wrap items-center h-fit mb-4">
-            <h2 className="font-bold text-4xl mr-10">{name}</h2>
+            <h1 className="font-bold text-4xl mr-10">{name}</h1>
             <Toggle enabled={enabled} onClick={handleToggleClick} />
           </div>
           {enabled && (
