@@ -55,14 +55,16 @@ const UpcomingGames: React.FC<PreviousGamesProps> = ({ games, teamId }) => {
                               </div>
                       
                               <div className='flex justify-between w-3/4 pl-4'>
-                                  <div className='flex flex-col'>
-                                      <p className='font-bold'>{game.away_team_city + " " + game.away_team_name}</p>
-                                      <p className='font-bold'>{game.home_team_city + " " + game.home_team_name}</p>
-                                  </div>
-                              
-                                  <div className='flex flex-col items-end font-bold'>
-                                      <p>{game.away_score}</p>
-                                      <p>{game.home_score}</p>
+                                  <div className='flex justify-between w-1/2'>
+                                    <div className='flex flex-col'>
+                                        <p className='font-bold'>{game.away_team_city + " " + game.away_team_name}</p>
+                                        <p className='font-bold'>{game.home_team_city + " " + game.home_team_name}</p>
+                                    </div>
+                                
+                                    <div className='flex flex-col items-end font-bold'>
+                                        <p>{game.away_score}</p>
+                                        <p>{game.home_score}</p>
+                                    </div>
                                   </div>
                           
                                   <div className='flex flex-col items-end'>

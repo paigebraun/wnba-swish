@@ -68,7 +68,7 @@ const TeamInfo: React.FC = () => {
           </div>
           {enabled && (
             <div className="mb-4">
-              <Glossary />
+               <Glossary page="team-info" />
             </div>
           )}
           <div className='flex gap-4'>
