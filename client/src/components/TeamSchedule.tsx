@@ -9,7 +9,6 @@ const TeamSchedule: React.FC = () => {
     const { teamId } = useParams<{ teamId: string }>();
 
     const [games, setGames] = useState<Game[]>([]);
-    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchSchedule = async () => {
@@ -22,7 +21,6 @@ const TeamSchedule: React.FC = () => {
                 setGames(data.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()));
             } catch (error) {
                 console.error("Error fetching schedule:", error);
-                setError("Error fetching schedule");
             }
         };
 

@@ -21,7 +21,6 @@ const TeamPlayers: React.FC = () => {
     }
 
     const [players, setPlayers] = useState<Player[]>([]);
-    const [error, setError] = useState<string | null>(null);
 
     const location = useLocation();
     const { logo } = location.state as { logo: string };
@@ -37,7 +36,6 @@ const TeamPlayers: React.FC = () => {
                 setPlayers(data);
             } catch (error) {
                 console.error("Error fetching players:", error);
-                setError("Error fetching players");
             }
         };
 

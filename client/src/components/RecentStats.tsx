@@ -42,7 +42,6 @@ function RecentStats() {
     }
 
     const [playerStats, setPlayerStats] = useState<PlayerStat[]>([]);
-    const [error, setError] = useState<string | null>(null);
     const [enabled, setEnabled] = useState(false);
     const [validPlayerStats, setValidPlayerStats] = useState(false);
 
@@ -86,7 +85,6 @@ function RecentStats() {
                 setValidPlayerStats(hasValidStats);
             } catch (error) {
                 console.error("Error fetching player stats:", error);
-                setError("Error fetching player stats");
             }
         };
 
@@ -108,8 +106,7 @@ function RecentStats() {
 
     const determineResult = (playerStat: PlayerStat): string => {
         const isHomeTeam = Number(playerStat.home_team_id) === Number(teamId);
-        console.log(playerStat.home_team_id, teamId, playerStat.home_score, playerStat.away_score);
-
+    
         if (isHomeTeam && (Number(playerStat.home_score) > Number(playerStat.away_score))) {
             return 'W';
         } if (!isHomeTeam && (Number(playerStat.away_score) > Number(playerStat.home_score))) { 
@@ -135,7 +132,7 @@ function RecentStats() {
                         </div>
                     )}
                     <div className="overflow-x-auto">
-                        <table className="min-w-full bg-white border-separate border-spacing-y-2 mt-5">
+                        <table className="min-w-full bg-white border-separate border-spacing-y-2">
                             <thead className="bg-black text-white text-left text-xs">
                                 <tr>
                                     <th className="p-2">DATE</th>
