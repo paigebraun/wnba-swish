@@ -6,7 +6,7 @@ interface ToggleProps {
 const Toggle: React.FC<ToggleProps> = ({ enabled, onClick }) => {
   return (
     <div className="flex gap-2 h-min items-center">
-      <span className="ml-2 text-xs font-medium">Glossary</span>
+      <span className="md:ml-2 text-xs font-medium">Glossary</span>
       <div className="flex items-center">
         <label className="inline-flex relative items-center mr-5 cursor-pointer">
           <input

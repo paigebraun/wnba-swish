@@ -57,45 +57,50 @@ const TeamInfo: React.FC = () => {
 
   return (
     <>
-      <div className="flex w-full gap-10 mt-10">
-        <div className="flex bg-gray-100 rounded h-fit max-w-48">
-          <img src={logo} alt="Team Logo" />
+      <div className="flex flex-col md:flex-row w-full gap-5 mt-10">
+        <div className="hidden md:flex bg-gray-100 rounded h-fit max-w-20 md:max-w-60">
+          <img src={logo} alt="Team Logo" className="" />
         </div>
         <div className="flex flex-col w-full">
-          <div className="flex flex-wrap items-center h-fit mb-4">
-            <h1 className="font-bold text-4xl mr-10">{name}</h1>
-            <Toggle enabled={enabled} onClick={handleToggleClick} />
+          <div className="flex flex-wrap gap-2 md:items-center h-fit mb-4">
+            <div className="flex md:hidden bg-gray-100 rounded h-fit max-w-28 md:max-w-60">
+              <img src={logo} alt="Team Logo" className="" />
+            </div>
+            <div className="flex md:flex-row flex-col md:items-center">
+              <h1 className="font-bold text-2xl md:text-4xl mr-4 md:mr-10">{name}</h1>
+              <Toggle enabled={enabled} onClick={handleToggleClick} />
+            </div>
           </div>
           {enabled && (
             <div className="mb-4">
-               <Glossary page="team-info" />
+              <Glossary page="team-info" />
             </div>
           )}
-          <div className='flex gap-4'>
-          <div className='flex flex-col gap-4'>
-            <h2
+          <div className="flex flex-col md:flex-row gap-2 md:gap-4">
+            <div className="flex flex-col gap-2 md:gap-4">
+              <h2
                 className={`
-                    px-4 py-2 rounded font-bold
-                    ${wins >= losses + 2 ? 'bg-green-300' : ''}
-                    ${Math.abs(wins - losses) <= 1 ? 'bg-yellow-300' : ''}
-                    ${losses >= wins + 2 ? 'bg-red-300' : ''}
-                    `}
-                >
-                    {wins} - {losses}
-            </h2>
-            <div className="flex justify-center items-center flex-col bg-gray-100 rounded h-full">
-                {stats[0].stat_abbr}
-                <div className="font-bold text-2xl">{formatNum(stats[0].value)}</div>
-            </div>
-          </div>
-          <div className="grid grid-cols-5 gap-4">
-            {stats.slice(1).map((stat, index) => (
-              <div className="flex items-center flex-col bg-gray-100 rounded px-4" key={index}>
-                {stat.stat_abbr}
-                <div className="font-bold text-2xl">{formatNum(stat.value)}</div>
+                  px-4 py-2 rounded font-bold text-center whitespace-nowrap
+                  ${wins >= losses + 2 ? "bg-green-300" : ""}
+                  ${Math.abs(wins - losses) <= 1 ? "bg-yellow-300" : ""}
+                  ${losses >= wins + 2 ? "bg-red-300" : ""}
+                `}
+              >
+                {wins} - {losses}
+              </h2>
+              <div className="flex justify-center items-center flex-col bg-gray-100 rounded h-full">
+                {stats[0]?.stat_abbr}
+                <div className="font-bold text-2xl">{formatNum(stats[0]?.value)}</div>
               </div>
-            ))}
-          </div>
+            </div>
+            <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
+              {stats.slice(1).map((stat, index) => (
+                <div className="flex items-center flex-col bg-gray-100 rounded px-4 py-2" key={index}>
+                  {stat.stat_abbr}
+                  <div className="font-bold md:text-xl lg:text-2xl">{formatNum(stat.value)}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

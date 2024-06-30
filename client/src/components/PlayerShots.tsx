@@ -189,7 +189,7 @@ function PlayerShots() {
 
     return (
         <div className='mt-10 mb-10'>
-            <h1 className='font-bold text-4xl mb-4'>Shooting</h1>
+            <h1 className='font-bold text-2xl md:text-4xl mb-4'>Shooting</h1>
             <div className="mb-4 relative">
                 <div className='flex gap-4'>
                     <button

@@ -1,13 +1,11 @@
 import TeamInfo from "../components/TeamInfo";
-import NavBar from "../components/NavBar";
 import TeamPlayers from "../components/TeamPlayers";
 import TeamSchedule from "../components/TeamSchedule";
 
 function TeamView() {
     return (
         <>
-            <NavBar />
-            <div className='mx-10'>
+            <div className='md:mx-10 mx-4'>
                 <TeamInfo />
                 <TeamPlayers />
                 <TeamSchedule />
