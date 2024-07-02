@@ -84,11 +84,18 @@ const fetchPlayerStatsForGame = async (gameId) => {
 // Determine which player stats to get. The game could be recent for home team, away team, or both.
 const fetchPlayerStatsForGames = async (gameIds, recentGamesByTeam) => {
   const allStats = [];
+  const processedGames = new Set(); // Track processed game IDs
+  
   console.log('Fetching player stats for games...');
   const client = await pool.connect();
 
   try {
     for (const gameId of gameIds) {
+      if (processedGames.has(gameId)) {
+        console.log(`Game ID ${gameId} already processed. Skipping.`);
+        continue;
+      }
+
       console.log('Fetching stats for game:', gameId);
       const gameQuery = await client.query(
         'SELECT * FROM games WHERE game_id = $1',
@@ -105,6 +112,9 @@ const fetchPlayerStatsForGames = async (gameIds, recentGamesByTeam) => {
 
       if (isRecentForHomeTeam || isRecentForAwayTeam) {
         const gameStats = await fetchPlayerStatsForGame(gameId);
+
+        // Mark game as processed
+        processedGames.add(gameId);
         
         // Filter stats for home team
         if (isRecentForHomeTeam) {
@@ -122,7 +132,7 @@ const fetchPlayerStatsForGames = async (gameIds, recentGamesByTeam) => {
       }
 
       // Delay of 30 seconds between each request
-      await new Promise(resolve => setTimeout(resolve, 30000));
+      await new Promise(resolve => setTimeout(resolve, 5000));
     }
     return allStats;
   } catch (error) {
@@ -134,15 +144,33 @@ const fetchPlayerStatsForGames = async (gameIds, recentGamesByTeam) => {
 };
 
 // Delete old stats that are no longer within the 5 most recent games for a player
-const deleteOldGameStats = async (recentGameIds) => {
+const deleteOldGameStats = async (recentGamesByTeam) => {
   const client = await pool.connect();
   try {
-    const deleteQuery = `
-      DELETE FROM player_stats
-      WHERE game_id NOT IN (${recentGameIds.map((id, index) => `$${index + 1}`).join(', ')})
-    `;
-    await client.query(deleteQuery, recentGameIds);
-    console.log(`Old game stats deleted successfully`);
+    for (const teamId in recentGamesByTeam) {
+      const recentGameIds = recentGamesByTeam[teamId];
+
+      if (!Array.isArray(recentGameIds)) {
+        console.warn(`Recent game IDs for Team ${teamId} is not an array. Skipping deletion of old game stats.`);
+        continue;
+      }
+
+      if (recentGameIds.length === 0) {
+        console.log(`No recent game IDs found for Team ${teamId}. Skipping deletion of old game stats.`);
+        continue;
+      }
+
+      const deleteQuery = `
+        DELETE FROM player_stats
+        WHERE team_id = $1 AND game_id NOT IN (${recentGameIds.map((id, index) => `$${index + 2}`).join(', ')})
+      `;
+      const params = [teamId, ...recentGameIds];
+      await client.query(deleteQuery, params);
+      console.log(`Old game stats deleted successfully for Team ${teamId}`);
+    }
+  } catch (error) {
+    console.error('Error deleting old game stats:', error);
+    throw new Error('Failed to delete old game stats');
   } finally {
     client.release();
   }

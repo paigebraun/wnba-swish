@@ -63,7 +63,7 @@ const TeamPlayers: React.FC = () => {
                                     key={index}
                                     className="group relative hover:border-t-2 hover:border-b-2 border-gray-200 hover:font-bold hover:text-xl cursor-pointer"
                                     onClick={() =>
-                                        navigate(`/${player.player_id}`, {
+                                        navigate(`/player/${player.player_id}`, {
                                             state: {
                                                 dob: player.dob,
                                                 height: player.height,

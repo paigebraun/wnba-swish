@@ -1,7 +1,11 @@
+import OverallSchedule from "../components/OverallSchedule";
+
 function Schedule() {
     return (
         <>
-            <h1>Schedule</h1>
+            <div className='mx-2 md:mx-10'>
+                <OverallSchedule />
+            </div>
         </>
     )
 }

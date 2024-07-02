@@ -120,10 +120,11 @@ function RecentStats() {
         <>  
             <div className='flex gap-4 items-center mt-10 mb-4'>
                 <h1 className='font-bold text-2xl md:text-4xl'>Recent Stats</h1>
-                <Toggle enabled={enabled} onClick={handleToggleClick} />
+                {!validPlayerStats ? (<></>): (
+                <Toggle enabled={enabled} onClick={handleToggleClick} />)}
             </div>
             {!validPlayerStats ? (
-                <p>No Recent Player Stats</p>
+                <p>No recent player stats.</p>
             ) : (
                 <div>
                     {enabled && (

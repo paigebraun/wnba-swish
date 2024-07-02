@@ -16,11 +16,12 @@ function PlayerInfo() {
     
     return (
         <div className="flex w-full relative gap-4 md:gap-10 mt-10 md:flex-row flex-col">
+            <h1 className="font-bold text-2xl md:hidden md:text-4xl mr-10">{name}</h1>
             <div className="flex bg-gray-100 rounded h-fit md:max-w-60">
                 <img className="pt-4" src={`https://cdn.wnba.com/headshots/wnba/latest/1040x760/${playerId}.png`} alt="Profile Pic" />
             </div>
             <div className="flex flex-col w-full">
-                <h1 className="font-bold text-2xl md:text-4xl mr-10">{name}</h1>
+                <h1 className="font-bold hidden md:block md:text-4xl mr-10">{name}</h1>
                 <div className="grid grid-cols-2 gap-2 gap-x-10 mt-2 w-fit">
                     <div className="flex flex-col">
                         <p className="text-xs">HEIGHT</p>
@@ -48,7 +49,7 @@ function PlayerInfo() {
                     </div>
                 </div>
             </div>
-            <div className="flex absolute right-0 gap-2">
+            <div className="flex absolute right-0 gap-2 top-12 md:top-0">
                 <div className="bg-gray-100 rounded">
                     <p className="text-4xl font-black text-wOrange p-2">{number}</p>
                 </div>

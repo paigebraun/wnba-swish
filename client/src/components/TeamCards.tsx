@@ -45,20 +45,13 @@ function TeamCards() {
         return <p>Loading teams...</p>;
     }
 
-    const getCircularIndex = (index: number) => {
-        if (index < 0) {
-            return (teams.length + (index % teams.length)) % teams.length;
-        }
-        return index % teams.length;
-    };
-
     function getConference(teamAbbr: string) {
         const westernTeams = ['DAL', 'LV', 'LA', 'MIN', 'PHX', 'SEA'];
         return westernTeams.includes(teamAbbr) ? 'Western Conference' : 'Eastern Conference';
     }
 
     return (
-        <div className="h-[80vh] flex justify-center items-center overflow-hidden">
+        <div className="md:h-[80vh] flex justify-center items-center overflow-hidden mb-10">
             <div className="w-full max-w-screen-lg">
                 <Swiper
                     spaceBetween={10}
@@ -68,9 +61,10 @@ function TeamCards() {
                         768: { slidesPerView: 3 },
                         1024: { slidesPerView: 5 },
                     }}
+                    grabCursor={true}
                     centeredSlides={true}
                     navigation={{ prevEl: ".swiper-button-prev", nextEl: ".swiper-button-next" }}
-                    onSlideChange={(swiper) => setCurrentIndex(getCircularIndex(swiper.realIndex))}
+                    onSlideChange={(swiper) => setCurrentIndex(swiper.realIndex)}
                     loop={true}
                     className="mySwiper overflow-visible"
                     initialSlide={2}
@@ -79,7 +73,7 @@ function TeamCards() {
                         <SwiperSlide key={index} className="rounded-lg p-2">
                             <div
                                 className={`flex justify-center p-4 rounded-lg transition-all ${
-                                    currentIndex === getCircularIndex(index) ? 'bg-wOrange' : 'bg-gray-100'
+                                    currentIndex === index ? 'bg-wOrange' : 'bg-gray-100'
                                 }`}
                                 onClick={() =>
                                     navigate(`/team/${team.team_id}`, {
@@ -92,7 +86,7 @@ function TeamCards() {
                                     })
                                 }
                             >
-                                <img src={team.logo} alt={team.name} className="object-cover cursor-pointer" />
+                                <img src={team.logo} alt={team.name} className="object-cover" />
                             </div>
                         </SwiperSlide>
                     ))}
@@ -102,18 +96,18 @@ function TeamCards() {
                         <FaArrowLeft />
                     </button>
                     <div className="flex flex-col items-center min-w-48">
-                        {teams.length > 0 && <h2 className="font-bold text-xl">{teams[getCircularIndex(currentIndex)].name}</h2>}
-                        {teams.length > 0 && <h2>{getConference(teams[getCircularIndex(currentIndex)].abbreviation)}</h2>}
+                        {teams.length > 0 && <h2 className="font-bold text-xl">{teams[currentIndex].name}</h2>}
+                        {teams.length > 0 && <h2>{getConference(teams[currentIndex].abbreviation)}</h2>}
                         {teams.length > 0 && (
                             <h2
                                 className={`
                                     mt-6 px-4 py-2 rounded font-bold
-                                    ${teams[getCircularIndex(currentIndex)].wins >= teams[getCircularIndex(currentIndex)].losses + 2 ? 'bg-green-300' : ''}
-                                    ${Math.abs(teams[getCircularIndex(currentIndex)].wins - teams[getCircularIndex(currentIndex)].losses) <= 1 ? 'bg-yellow-300' : ''}
-                                    ${teams[getCircularIndex(currentIndex)].losses >= teams[getCircularIndex(currentIndex)].wins + 2 ? 'bg-red-300' : ''}
+                                    ${teams[currentIndex].wins >= teams[currentIndex].losses + 2 ? 'bg-green-300' : ''}
+                                    ${Math.abs(teams[currentIndex].wins - teams[currentIndex].losses) <= 1 ? 'bg-yellow-300' : ''}
+                                    ${teams[currentIndex].losses >= teams[currentIndex].wins + 2 ? 'bg-red-300' : ''}
                                 `}
                             >
-                                {teams[getCircularIndex(currentIndex)].wins} - {teams[getCircularIndex(currentIndex)].losses}
+                                {teams[currentIndex].wins} - {teams[currentIndex].losses}
                             </h2>
                         )}
                     </div>

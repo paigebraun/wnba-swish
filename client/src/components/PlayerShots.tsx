@@ -16,6 +16,7 @@ function PlayerShots() {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
     const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
+    const [hasError, setHasError] = useState(false);
     const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
 
     useEffect(() => {
@@ -27,9 +28,15 @@ function PlayerShots() {
                     throw new Error(`Network response was not ok: ${errorText}`);
                 }
                 const data: Shot[] = await response.json();
-                setShots(data);
+                if (data.length===0) {
+                    setHasError(true);
+                } else {
+                    setShots(data);
+                    setHasError(false);
+                }
             } catch (error) {
                 console.error('Error fetching player shots:', error);
+                setHasError(true);
             }
         };
 
@@ -186,6 +193,10 @@ function PlayerShots() {
         setActiveTabIndex(index);
         setView(viewType);
     };
+
+    if (hasError) {
+        return;
+    }
 
     return (
         <div className='mt-10 mb-10'>

@@ -17,13 +17,15 @@ const UpcomingGames: React.FC<UpcomingGamesProps> = ({ games }) => {
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
 
-    const formatDateMobile = (dateString: string): { day: string, date: string } => {
+    const formatDateMobile = (dateString: string): { day: string, date: string, month: string} => {
         const date = new Date(dateString);
         const dayOptions: Intl.DateTimeFormatOptions = { weekday: 'short' };
         const dateOptions: Intl.DateTimeFormatOptions = { day: 'numeric' };
+        const monthOptions: Intl.DateTimeFormatOptions = { month: 'short'}
         const day = date.toLocaleDateString(undefined, dayOptions);
         const datePart = date.toLocaleDateString(undefined, dateOptions);
-        return { day, date: datePart };
+        const month = date.toLocaleDateString(undefined, monthOptions)
+        return { day, date: datePart, month };
     };
 
     const loadMoreGames = () => {
@@ -33,7 +35,7 @@ const UpcomingGames: React.FC<UpcomingGamesProps> = ({ games }) => {
     return (
         <>
         <div className="lg:block hidden">
-            <h1 className='font-bold text-4xl mt-10'>Schedule</h1>
+            <h1 className='font-bold text-4xl mt-10'>Upcoming</h1>
             <div className='flex flex-col gap-4 mt-5 mx-10'>
                 {games.filter(game => game.status !== 'Final').slice(0, visibleGames).map((game, index) => (
                     <div key={index} className='flex items-center py-3 px-10 justify-between gap-4 bg-gray-100 rounded'>
@@ -67,18 +69,18 @@ const UpcomingGames: React.FC<UpcomingGamesProps> = ({ games }) => {
         </div>
 
         <div className="display-block lg:hidden">
-        <h1 className='font-bold text-2xl md:text-4xl mt-10 text-left'>Schedule</h1>
+        <h1 className='font-bold text-2xl md:text-4xl mt-10 text-left'>Upcoming</h1>
             <div className='flex flex-col gap-4 mt-5'>
                 {games.filter(game => game.status !== 'Final').slice(0, visibleGames).map((game, index) => (
                     <div key={index} className='flex items-center py-3 px-4 gap-4 bg-gray-100 rounded'>
                         <div className='flex items-center gap-4 w-full'>
                             <div className='flex flex-col items-center justify-center bg-white p-2 rounded-lg px-4 w-1/3 md:w-1/5'>
-                                <p className='text-wOrange font-bold text-xl md:text-2xl'>{formatDateMobile(game.date).day}</p>
+                                <p className='text-wOrange font-semibold text-xl md:text-2xl'>{formatDateMobile(game.date).day}<span className='text-gray-500'> {formatDateMobile(game.date).month}</span></p>
                                 <p className='text-4xl font-bold'>{formatDateMobile(game.date).date}</p>
                             </div>
                             <div className='flex flex-col'>
                                 <p className='font-bold'>{game.away_team_city + " " + game.away_team_name + " at " + game.home_team_city + " " + game.home_team_name}</p>
-                                <p>{game.date.split('T')[1].slice(1, 5)} ET</p>
+                                <p>{game.status}</p>
                                 <p>{game.arena}</p>
                                 <p>{game.arena_city + ", " + game.arena_state}</p>
                             </div>

@@ -3,7 +3,7 @@ const pool = require('../db/db');
 
 const router = express.Router();
 
-// Define the route to get team data
+// Define the route to get team schedule
 router.get('/:teamId/schedule', async (req, res) => {
     const teamId = req.params.teamId;
     
@@ -31,6 +31,16 @@ router.get('/:teamId/schedule', async (req, res) => {
         console.error('Error executing query', err.stack);
         res.status(500).send('Internal Server Error');
     }
+});
+
+router.get('/schedule', async(req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM games');
+        res.json(result.rows);
+      } catch (error) {
+        console.error(error);
+        res.status(500).send('Server Error');
+      }
 });
 
 module.exports = router;

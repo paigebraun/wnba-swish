@@ -12,7 +12,7 @@ const updataDatabase = async () => {
         //fetchAllTeamStats().catch(error => console.error('Error fetching and saving team stats:', error));
         //fetchAllPlayers().catch(error => console.error('Error fetching and saving players:', error));
         //fetchAllGames().catch(error => console.error('Error fetching and saving games:', error));
-        //fetchAllPlayerStats().catch(error => console.error('Error fetching and saving player game stats:', error));
+        fetchAllPlayerStats().catch(error => console.error('Error fetching and saving player game stats:', error));
         //fetchAllShots().catch(error => console.error('Error fetching and saving player shots', error));
     } catch (error) {
         console.error('Error updating databse:', error);
