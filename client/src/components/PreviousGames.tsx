@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Game } from "../types/Game";
+import { motion } from "framer-motion";
 
 interface PreviousGamesProps {
     games: Game[];
@@ -55,7 +56,13 @@ const PreviousGames: React.FC<PreviousGamesProps> = ({ games, teamId }) => {
                                   : null;
 
                               return (
-                                  <div key={index} className='flex items-center py-3 px-10 gap-4 justify-between bg-wOrange text-white rounded'>
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                    className='flex items-center py-3 px-4 gap-4 bg-wOrange text-white rounded'
+                                >
                                       <div className='flex flex-col items-end w-1/4'>
                                           <p className='font-bold'>{formatDate(game.date)}</p>
                                           {teamId && (
@@ -82,16 +89,18 @@ const PreviousGames: React.FC<PreviousGamesProps> = ({ games, teamId }) => {
                                               <p>{game.arena_city + ", " + game.arena_state}</p>
                                           </div>
                                       </div>
-                                  </div>
+                                  </motion.div>
                               );
                           })}
                     {visibleGames < games.filter(game => game.status === 'Final').length && (
-                        <button 
+                        <motion.button 
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
                             className='mt-4 p-2 border-2 border-wOrange text-wOrange rounded-3xl px-4 self-center hover:bg-wOrange hover:text-white' 
                             onClick={loadMoreGames}
                         >
                             Load More
-                        </button>
+                        </motion.button>
                     )}
                 </div>
             </div>
@@ -118,7 +127,13 @@ const PreviousGames: React.FC<PreviousGamesProps> = ({ games, teamId }) => {
                                   : null;
 
                               return (
-                                  <div key={index} className='flex items-center py-3 px-4 gap-4 justify-between bg-wOrange text-white rounded'>
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                    className='flex items-center py-3 px-4 gap-4 bg-wOrange text-white rounded'
+                                >
                                       <div className='flex items-center gap-4 w-full'>
                                           <div className='flex flex-col items-center justify-center bg-white p-2 rounded-lg px-4 w-1/3 md:w-1/5'>
                                               <p className='text-wOrange font-bold text-xl md:text-2xl'>{formatDateMobile(game.date).day}</p>
@@ -138,16 +153,18 @@ const PreviousGames: React.FC<PreviousGamesProps> = ({ games, teamId }) => {
                                               <p>{game.arena_city + ", " + game.arena_state}</p>
                                           </div>
                                       </div>
-                                  </div>
+                                  </motion.div>
                               );
                           })}
                     {visibleGames < games.filter(game => game.status === 'Final').length && (
-                        <button 
+                        <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
                             className='mt-4 p-2 border-2 border-wOrange text-wOrange rounded-3xl px-4 self-center hover:bg-wOrange hover:text-white' 
                             onClick={loadMoreGames}
                         >
                             Load More
-                        </button>
+                        </motion.button>
                     )}
                 </div>
             </div>

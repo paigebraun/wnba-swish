@@ -3,6 +3,8 @@ import { useParams, useLocation } from "react-router-dom";
 import Toggle from "./Toggle";
 import Glossary from "./Glossary";
 
+import "../spinner.css"
+
 interface Stat {
   stat_type: string;
   stat_abbr: string;
@@ -44,7 +46,11 @@ const TeamInfo: React.FC = () => {
   };
 
   if (isLoading) {
-    return <p>Loading stats...</p>;
+    return (
+        <div className="flex justify-center items-center h-screen">
+            <div className="spinner"></div>
+        </div>
+    );
   }
 
   if (error) {

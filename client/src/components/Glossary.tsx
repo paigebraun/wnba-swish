@@ -4,7 +4,7 @@ interface GlossaryProps {
 
 function Glossary({page}: GlossaryProps) {
     return(
-        <div className='grid grid-cols-3 text-xs'>
+        <div className='grid grid-cols-2 gap-x-2 md:grid-cols-3 text-xs '>
             {page === 'team-info' ? (
                 <>
                     <p><span className="font-bold">GP</span> - Games Played</p>

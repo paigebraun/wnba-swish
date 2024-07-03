@@ -143,34 +143,15 @@ const fetchPlayerStatsForGames = async (gameIds, recentGamesByTeam) => {
   }
 };
 
-// Delete old stats that are no longer within the 5 most recent games for a player
-const deleteOldGameStats = async (recentGamesByTeam) => {
+// Delete old stats
+const deleteAllPlayerStats = async () => {
   const client = await pool.connect();
   try {
-    for (const teamId in recentGamesByTeam) {
-      const recentGameIds = recentGamesByTeam[teamId];
-
-      if (!Array.isArray(recentGameIds)) {
-        console.warn(`Recent game IDs for Team ${teamId} is not an array. Skipping deletion of old game stats.`);
-        continue;
-      }
-
-      if (recentGameIds.length === 0) {
-        console.log(`No recent game IDs found for Team ${teamId}. Skipping deletion of old game stats.`);
-        continue;
-      }
-
-      const deleteQuery = `
-        DELETE FROM player_stats
-        WHERE team_id = $1 AND game_id NOT IN (${recentGameIds.map((id, index) => `$${index + 2}`).join(', ')})
-      `;
-      const params = [teamId, ...recentGameIds];
-      await client.query(deleteQuery, params);
-      console.log(`Old game stats deleted successfully for Team ${teamId}`);
-    }
+    await client.query('DELETE FROM player_stats');
+    console.log('All player stats deleted successfully');
   } catch (error) {
-    console.error('Error deleting old game stats:', error);
-    throw new Error('Failed to delete old game stats');
+    console.error('Error deleting all player stats:', error);
+    throw new Error('Failed to delete all player stats');
   } finally {
     client.release();
   }
@@ -246,11 +227,11 @@ const fetchAllPlayerStats = async () => {
     const recentGameIds = Array.from(recentGameIdsSet);
     const allStats = await fetchPlayerStatsForGames(recentGameIds, recentGamesByTeam);
 
+    // Delete existing player stats
+    await deleteAllPlayerStats(recentGameIds);
+
     // Insert/Update player stats in the database
     await upsertPlayerStats(allStats);
-
-    // Delete old game stats from the database
-    await deleteOldGameStats(recentGameIds);
 
     console.log('Player stats updated successfully');
   } catch (error) {

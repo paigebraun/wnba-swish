@@ -6,6 +6,9 @@ import SwiperCore from 'swiper/core';
 import { Navigation } from "swiper/modules";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
+import '../spinner.css';
+import { motion } from "framer-motion";
+
 SwiperCore.use([Navigation]);
 
 interface Team {
@@ -42,7 +45,11 @@ function TeamCards() {
     }, []);
 
     if (isLoading) {
-        return <p>Loading teams...</p>;
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <div className="spinner"></div>
+            </div>
+        );
     }
 
     function getConference(teamAbbr: string) {
@@ -92,9 +99,9 @@ function TeamCards() {
                     ))}
                 </Swiper>
                 <div className="flex items-center justify-center mt-10 gap-6">
-                    <button className="flex justify-center items-center w-7 h-7 rounded-full bg-wOrange text-white swiper-button-prev">
+                    <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="flex justify-center items-center w-7 h-7 rounded-full bg-wOrange text-white swiper-button-prev">
                         <FaArrowLeft />
-                    </button>
+                    </motion.button>
                     <div className="flex flex-col items-center min-w-48">
                         {teams.length > 0 && <h2 className="font-bold text-xl">{teams[currentIndex].name}</h2>}
                         {teams.length > 0 && <h2>{getConference(teams[currentIndex].abbreviation)}</h2>}
@@ -111,9 +118,9 @@ function TeamCards() {
                             </h2>
                         )}
                     </div>
-                    <button className="flex justify-center items-center w-7 h-7 rounded-full bg-wOrange text-white swiper-button-next">
+                    <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="flex justify-center items-center w-7 h-7 rounded-full bg-wOrange text-white swiper-button-next">
                         <FaArrowRight />
-                    </button>
+                    </motion.button>
                 </div>
             </div>
         </div>
