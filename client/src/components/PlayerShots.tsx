@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as d3 from 'd3';
+import wnbaHalfCourtImage from '../assets/wnba-half-court-black.png';
 
 interface Shot {
     loc_x: number;
@@ -111,7 +112,7 @@ function PlayerShots() {
             .attr('y', -47.5)
             .attr('width', 500)
             .attr('height', 470)
-            .attr('href', '/src/assets/wnba-half-court-black.png');
+            .attr('href', wnbaHalfCourtImage);
 
         // Draw all shots as yellow circles
         svg.selectAll('.shot')
@@ -139,7 +140,7 @@ function PlayerShots() {
             .attr('y', -47.5)
             .attr('width', 500)
             .attr('height', 470)
-            .attr('href', '/src/assets/wnba-half-court-black.png');
+            .attr('href', wnbaHalfCourtImage);
 
         // Calculate scale for x and y coordinates
         const xScale = d3.scaleLinear()
