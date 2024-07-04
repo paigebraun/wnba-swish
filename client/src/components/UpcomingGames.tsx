@@ -89,7 +89,7 @@ const UpcomingGames: React.FC<UpcomingGamesProps> = ({ games }) => {
                         className='flex items-center py-3 px-4 gap-4 bg-gray-100 rounded'
                     >
                         <div className='flex items-center gap-4 w-full'>
-                            <div className='flex flex-col items-center justify-center bg-white p-2 rounded-lg px-4 w-1/3 md:w-1/5'>
+                            <div className='flex flex-col items-center justify-center bg-white min-w-fit p-2 rounded-lg md:px-4 w-1/3 md:w-1/5'>
                                 <p className='text-wOrange font-semibold text-xl md:text-2xl'>{formatDateMobile(game.date).day}<span className='text-gray-500'> {formatDateMobile(game.date).month}</span></p>
                                 <p className='text-4xl font-bold'>{formatDateMobile(game.date).date}</p>
                             </div>

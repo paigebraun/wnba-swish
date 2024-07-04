@@ -81,7 +81,7 @@ const TeamPlayers: React.FC = () => {
                                 >
                                     <td className="py-2 pr-4 w-1/3">
                                         {player.first_name} {player.last_name}
-                                        <div className="hidden absolute left-[-50px] top-1/2 transform -translate-y-1/2 bg-wOrange pl-5 pr-2 py-1 rounded-2xl text-white group-hover:block">
+                                        <div className="hidden absolute left-[-50px] top-1/2 transform -translate-y-1/2 bg-wOrange pl-5 pr-2 py-1 rounded-2xl text-white md:group-hover:block">
                                             <FaArrowRight />
                                         </div>
                                     </td>

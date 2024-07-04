@@ -55,7 +55,7 @@ function Standings() {
                     <div className="flex items-center">
                         <h2
                             className={`
-                                p-2 rounded font-bold
+                                p-2 rounded font-bold min-w-max
                                 ${team.wins >= team.losses + 2 ? 'bg-green-300' : ''}
                                 ${Math.abs(team.wins - team.losses) <= 1 ? 'bg-yellow-300' : ''}
                                 ${team.losses >= team.wins + 2 ? 'bg-red-300' : ''}
