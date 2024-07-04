@@ -48,7 +48,7 @@ function RecentStats() {
     useEffect(() => {
         const fetchPlayerStats = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/api/stats/${playerId}`);
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/stats/${playerId}`);
                 if (!response.ok) {
                     throw new Error("Failed to fetch player stats");
                 }

@@ -13,7 +13,7 @@ const TeamSchedule: React.FC = () => {
     useEffect(() => {
         const fetchSchedule = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/api/${teamId}/schedule`);
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/${teamId}/schedule`);
                 if (!response.ok) {
                     throw new Error("Failed to fetch schedule");
                 }

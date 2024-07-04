@@ -31,7 +31,7 @@ function TeamCards() {
     useEffect(() => {
         const fetchTeams = async () => {
             try {
-                const response = await fetch("http://localhost:3000/api/teams");
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/teams`);
                 const data: Team[] = await response.json();
                 setTeams(data);
                 setIsLoading(false);

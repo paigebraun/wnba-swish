@@ -28,7 +28,7 @@ const TeamPlayers: React.FC = () => {
     useEffect(() => {
         const fetchPlayers = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/api/${teamId}/players`);
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/${teamId}/players`);
                 if (!response.ok) {
                     throw new Error("Failed to fetch players");
                 }

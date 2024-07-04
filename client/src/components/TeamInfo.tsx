@@ -24,7 +24,7 @@ const TeamInfo: React.FC = () => {
   useEffect(() => {
     const fetchTeamStats = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/team-stats/${teamId}`);
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/team-stats/${teamId}`);
         if (!response.ok) {
           throw new Error("Failed to fetch team stats");
         }

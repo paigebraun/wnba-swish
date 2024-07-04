@@ -22,7 +22,7 @@ function PlayerShots() {
     useEffect(() => {
         const fetchShots = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/api/player/${playerId}/shots`);
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/player/${playerId}/shots`);
                 if (!response.ok) {
                     const errorText = await response.text();
                     throw new Error(`Network response was not ok: ${errorText}`);
