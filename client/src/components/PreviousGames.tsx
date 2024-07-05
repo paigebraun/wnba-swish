@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Game } from "../types/Game";
 import { motion } from "framer-motion";
+import { format, parseISO } from 'date-fns';
 
 interface PreviousGamesProps {
     games: Game[];
@@ -11,21 +12,15 @@ const PreviousGames: React.FC<PreviousGamesProps> = ({ games, teamId }) => {
     const [visibleGames, setVisibleGames] = useState<number>(3);
 
     const formatDate = (dateString: string): string => {
-        const options: Intl.DateTimeFormatOptions = { 
-            weekday: 'long', 
-            month: 'long', 
-            day: 'numeric' 
-        };
-        return new Date(dateString).toLocaleDateString(undefined, options);
+        return format(parseISO(dateString), 'EEEE, MMMM d');
     };
 
     const formatDateMobile = (dateString: string): { day: string, date: string } => {
-        const date = new Date(dateString);
-        const dayOptions: Intl.DateTimeFormatOptions = { weekday: 'short' };
-        const dateOptions: Intl.DateTimeFormatOptions = { day: 'numeric' };
-        const day = date.toLocaleDateString(undefined, dayOptions);
-        const datePart = date.toLocaleDateString(undefined, dateOptions);
-        return { day, date: datePart };
+        const date = parseISO(dateString);
+        return { 
+            day: format(date, 'EEE'), 
+            date: format(date, 'd') 
+        };
     };
 
     const loadMoreGames = () => {

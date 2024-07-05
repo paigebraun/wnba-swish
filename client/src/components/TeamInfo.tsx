@@ -3,7 +3,7 @@ import { useParams, useLocation } from "react-router-dom";
 import Toggle from "./Toggle";
 import Glossary from "./Glossary";
 
-import "../spinner.css"
+import "../spinner.css";
 
 interface Stat {
   stat_type: string;
@@ -19,7 +19,8 @@ const TeamInfo: React.FC = () => {
   const [enabled, setEnabled] = useState(false); // State for toggle
 
   const location = useLocation();
-  const { logo, name, wins, losses } = location.state as { logo: string, name: string, wins: number, losses: number };
+  const savedTeamData = localStorage.getItem("teamData");
+  const { logo, name, wins, losses } = location.state || (savedTeamData && JSON.parse(savedTeamData)) || {};
 
   useEffect(() => {
     const fetchTeamStats = async () => {
@@ -47,9 +48,9 @@ const TeamInfo: React.FC = () => {
 
   if (isLoading) {
     return (
-        <div className="flex justify-center items-center h-screen">
-            <div className="spinner"></div>
-        </div>
+      <div className="flex justify-center items-center h-screen">
+        <div className="spinner"></div>
+      </div>
     );
   }
 

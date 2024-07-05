@@ -4,7 +4,6 @@ import { FaArrowRight } from "react-icons/fa";
 
 const TeamPlayers: React.FC = () => {
     const { teamId } = useParams<{ teamId: string }>();
-
     const navigate = useNavigate();
 
     interface Player {
@@ -23,7 +22,8 @@ const TeamPlayers: React.FC = () => {
     const [players, setPlayers] = useState<Player[]>([]);
 
     const location = useLocation();
-    const { logo } = location.state as { logo: string };
+    const savedState = localStorage.getItem("teamData");
+    const { logo } = location.state || (savedState && JSON.parse(savedState)) || '';
 
     useEffect(() => {
         const fetchPlayers = async () => {

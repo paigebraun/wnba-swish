@@ -7,10 +7,13 @@ import PlayerView from './pages/PlayerView';
 import StandingsView from "./pages/StandingsView";
 import Schedule from "./pages/Schedule";
 
+import ScrollToTop from "./components/ScrollToTop";
+
 
 function App() {
   return (
     <>
+    <ScrollToTop />
     <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />

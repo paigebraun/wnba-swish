@@ -82,16 +82,17 @@ function TeamCards() {
                                 className={`flex justify-center p-4 rounded-lg transition-all ${
                                     currentIndex === index ? 'bg-wOrange' : 'bg-gray-100'
                                 }`}
-                                onClick={() =>
-                                    navigate(`/team/${team.team_id}`, {
-                                        state: {
-                                            logo: team.logo,
-                                            name: team.display_name,
-                                            wins: team.wins,
-                                            losses: team.losses,
-                                        },
-                                    })
-                                }
+                                onClick={() => {
+                                    const teamData = {
+                                        logo: team.logo,
+                                        name: team.display_name,
+                                        wins: team.wins,
+                                        losses: team.losses,
+                                    };
+                                    console.log("Saving to localStorage:", teamData);
+                                    localStorage.setItem("teamData", JSON.stringify(teamData));
+                                    navigate(`/team/${team.team_id}`);
+                                }}                                  
                             >
                                 <img src={team.logo} alt={team.name} className="object-cover" />
                             </div>
@@ -103,7 +104,7 @@ function TeamCards() {
                         <FaArrowLeft />
                     </motion.button>
                     <div className="flex flex-col items-center min-w-48">
-                        {teams.length > 0 && <h2 className="font-bold text-xl">{teams[currentIndex].name}</h2>}
+                        {teams.length > 0 && <h2 className="font-bold text-xl">{teams[currentIndex].display_name}</h2>}
                         {teams.length > 0 && <h2>{getConference(teams[currentIndex].abbreviation)}</h2>}
                         {teams.length > 0 && (
                             <h2
