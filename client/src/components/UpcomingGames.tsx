@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { format, parseISO } from 'date-fns';
-import { toDate, toZonedTime } from 'date-fns-tz';
+import { toZonedTime } from 'date-fns-tz';
 import { Game } from "../types/Game";
 
 interface UpcomingGamesProps {
@@ -12,7 +12,7 @@ const UpcomingGames: React.FC<UpcomingGamesProps> = ({ games }) => {
     const [visibleGames, setVisibleGames] = useState<number>(3);
 
     const formatDate = (dateString: string): string => {
-        const date = toDate(parseISO(dateString));
+        const date = toZonedTime(parseISO(dateString), 'UTC');
         return format(date, 'EEEE, MMMM d');
     };
     

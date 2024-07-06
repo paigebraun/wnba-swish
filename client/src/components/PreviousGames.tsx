@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Game } from "../types/Game";
 import { motion } from "framer-motion";
 import { format, parseISO } from 'date-fns';
+import { toZonedTime } from 'date-fns-tz';
 
 interface PreviousGamesProps {
     games: Game[];
@@ -12,15 +13,16 @@ const PreviousGames: React.FC<PreviousGamesProps> = ({ games, teamId }) => {
     const [visibleGames, setVisibleGames] = useState<number>(3);
 
     const formatDate = (dateString: string): string => {
-        return format(parseISO(dateString), 'EEEE, MMMM d');
+        const date = toZonedTime(parseISO(dateString), 'UTC');
+        return format(date, 'EEEE, MMMM d');
     };
-
-    const formatDateMobile = (dateString: string): { day: string, date: string } => {
-        const date = parseISO(dateString);
-        return { 
-            day: format(date, 'EEE'), 
-            date: format(date, 'd') 
-        };
+    
+    const formatDateMobile = (dateString: string): { day: string, date: string, month: string} => {
+        const date = toZonedTime(parseISO(dateString), 'UTC');
+        const day = format(date, 'EEE');
+        const datePart = format(date, 'd');
+        const month = format(date, 'MMM');
+        return { day, date: datePart, month };
     };
 
     const loadMoreGames = () => {
@@ -131,8 +133,8 @@ const PreviousGames: React.FC<PreviousGamesProps> = ({ games, teamId }) => {
                                 >
                                       <div className='flex items-center gap-4 w-full'>
                                           <div className='flex flex-col items-center justify-center bg-white p-2 rounded-lg px-4 w-1/3 md:w-1/5'>
-                                              <p className='text-wOrange font-bold text-xl md:text-2xl'>{formatDateMobile(game.date).day}</p>
-                                              <p className='text-4xl text-black font-bold'>{formatDateMobile(game.date).date}</p>
+                                            <p className='text-wOrange font-semibold text-xl md:text-2xl'>{formatDateMobile(game.date).day}<span className='text-gray-500'> {formatDateMobile(game.date).month}</span></p>
+                                            <p className='text-4xl text-black font-bold'>{formatDateMobile(game.date).date}</p>
                                           </div>
                                           <div className='flex flex-col'>
                                               <p className='font-bold'>{game.away_team_city + " " + game.away_team_name + " at " + game.home_team_city + " " + game.home_team_name}</p>
