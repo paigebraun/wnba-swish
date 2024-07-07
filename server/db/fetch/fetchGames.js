@@ -54,7 +54,7 @@ const fetchGames = async (teamId, teamName) => {
         }));
         client.release();
 
-        console.log(`Games for team ID ${teamId} inserted into games table`);
+        //console.log(`Games for team ID ${teamId} inserted into games table`);
     } catch (error) {
         console.error(`Error fetching and inserting games for team ID ${teamId}:`, error);
         throw error;
@@ -68,7 +68,7 @@ const fetchAllGames = async () => {
         for (const team of teams) {
             await fetchGames(team.id, team.name);
         }
-        console.log('All games fetched successfully');
+        //console.log('All games fetched successfully');
     } catch (error) {
         console.error('Error fetching games:', error);
     }

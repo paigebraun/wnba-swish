@@ -54,7 +54,7 @@ const fetchShots = async (playerId) => {
         const playerName = shotChartDetails.rowSet[0][headers.indexOf("PLAYER_NAME")];
         await client.query(insertQuery, [playerId, playerName, JSON.stringify(playerShots)]);
 
-        console.log('Data inserted/updated successfully');
+        //console.log('Data inserted/updated successfully');
     } catch (error) {
         console.error('Error inserting/updating data:', error);
     } finally {
@@ -75,7 +75,7 @@ const fetchAllShots = async () => {
         // Iterate through each player ID and call fetchShots function with a 10-second delay
         for (let i = 0; i < playerIds.length; i++) {
             const playerId = playerIds[i];
-            console.log('Fetching shots for:', playerId);
+            //console.log('Fetching shots for:', playerId);
             await fetchShots(playerId);
             
             // Add a 10-second delay before the next iteration
@@ -84,7 +84,7 @@ const fetchAllShots = async () => {
             }
         }
 
-        console.log('All shots fetched successfully');
+        //console.log('All shots fetched successfully');
     } catch (error) {
         console.error('Error fetching shots:', error);
     }

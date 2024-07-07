@@ -51,11 +51,11 @@ const selectRecent5GamesPerTeam = async (games) => {
       .slice(0, 5)
       .map(game => game.game_id);
 
-    console.log(`Team ${team.team_id} (${team.name}): ${recentGames.length} recent games`);
+    //console.log(`Team ${team.team_id} (${team.name}): ${recentGames.length} recent games`);
     recentGamesByTeam[team.team_id] = recentGames;
   });
 
-  console.log('Recent games by team:', recentGamesByTeam);
+  //console.log('Recent games by team:', recentGamesByTeam);
 
   return recentGamesByTeam;
 };
@@ -86,17 +86,17 @@ const fetchPlayerStatsForGames = async (gameIds, recentGamesByTeam) => {
   const allStats = [];
   const processedGames = new Set(); // Track processed game IDs
   
-  console.log('Fetching player stats for games...');
+  //console.log('Fetching player stats for games...');
   const client = await pool.connect();
 
   try {
     for (const gameId of gameIds) {
       if (processedGames.has(gameId)) {
-        console.log(`Game ID ${gameId} already processed. Skipping.`);
+        //console.log(`Game ID ${gameId} already processed. Skipping.`);
         continue;
       }
 
-      console.log('Fetching stats for game:', gameId);
+      //console.log('Fetching stats for game:', gameId);
       const gameQuery = await client.query(
         'SELECT * FROM games WHERE game_id = $1',
         [gameId]
@@ -148,7 +148,7 @@ const deleteAllPlayerStats = async () => {
   const client = await pool.connect();
   try {
     await client.query('DELETE FROM player_stats');
-    console.log('All player stats deleted successfully');
+    //console.log('All player stats deleted successfully');
   } catch (error) {
     console.error('Error deleting all player stats:', error);
     throw new Error('Failed to delete all player stats');
@@ -233,7 +233,7 @@ const fetchAllPlayerStats = async () => {
     // Insert/Update player stats in the database
     await upsertPlayerStats(allStats);
 
-    console.log('Player stats updated successfully');
+    //console.log('Player stats updated successfully');
   } catch (error) {
     console.error('Error updating player stats:', error);
   }

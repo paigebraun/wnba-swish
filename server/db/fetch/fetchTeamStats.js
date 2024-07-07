@@ -25,7 +25,7 @@ const fetchTeamStats = async (espnId, teamName) => {
         ];
 
         const team_id = teamStats.sta.tid;
-        console.log('team_id', team_id);
+        //console.log('team_id', team_id);
 
         const client = await pool.connect();
 
@@ -41,7 +41,7 @@ const fetchTeamStats = async (espnId, teamName) => {
 
         client.release();
    
-        console.log(`Team statistics for team ID ${team_id} inserted into team_stats table`);
+        //console.log(`Team statistics for team ID ${team_id} inserted into team_stats table`);
 
         await updateTeamIds();
 
@@ -58,7 +58,7 @@ const fetchAllTeamStats = async () => {
         for (const team of teams) {
             await fetchTeamStats(team.id, team.name);
         }
-        console.log('All team statistics fetched successfully');
+        //console.log('All team statistics fetched successfully');
     } catch (error) {
         console.error('Error fetching team statistics:', error);
     }

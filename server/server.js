@@ -1,11 +1,11 @@
 const express = require('express');
-const updataDatabase = require('./db/dataUpdater');
 const teamsRoute = require('./routes/teams');
 const teamStatsRoute = require('./routes/teamStats');
 const playerRoute = require('./routes/players');
 const gamesRoute = require('./routes/games');
 const playerStatsRoute = require('./routes/playerStats');
 const playerShotsRoute = require('./routes/playerShots');
+const updateRoute = require('./routes/update');
 const cors = require('cors');
 
 const app = express();
@@ -30,11 +30,9 @@ app.use('/api', playerRoute);
 app.use('/api', gamesRoute);
 app.use('/api', playerStatsRoute);
 app.use('/api', playerShotsRoute);
+app.use('/api', updateRoute);
 
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-
-  // Call updateDatabase when server starts
-  //updataDatabase();
 });

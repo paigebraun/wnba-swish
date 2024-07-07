@@ -34,7 +34,7 @@ const fetchPlayers = async (espnId, teamName) => {
         }));
         client.release();
 
-        console.log(`Players for team ID ${espnId} inserted into players table`);
+        //console.log(`Players for team ID ${espnId} inserted into players table`);
     } catch (error) {
         console.error(`Error fetching and inserting players for team ID ${espnId}:`, error);
         throw error;
@@ -48,7 +48,7 @@ const fetchAllPlayers = async () => {
         for (const team of teams) {
             await fetchPlayers(team.id, team.name);
         }
-        console.log('All players fetched successfully');
+        //console.log('All players fetched successfully');
     } catch (error) {
         console.error('Error fetching players:', error);
     }
