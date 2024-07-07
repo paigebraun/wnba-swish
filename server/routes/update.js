@@ -12,11 +12,13 @@ router.get('/update', async (req, res) => {
     }
 
     try {
-        await updateDatabase();
-        res.status(200).send('Database updated successfully');
+        // Start the update process asynchronously
+        updateDatabase();
+
+        res.status(200).send('Database update process started');
     } catch (error) {
-        console.error('Error updating database:', error);
-        res.status(500).send('Failed to update database');
+        console.error('Error starting database update:', error);
+        res.status(500).send('Failed to start database update');
     }
 });
 

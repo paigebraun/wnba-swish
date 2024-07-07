@@ -1,11 +1,8 @@
 const pool = require('../db');
 const { getAllTeams } = require('../utilities/teamUtils');
-const http = require('http');
 
 // Define options and set up proxy IP
 const getOptions = (gameId) => {
-  const proxyUrl = 'http://198.74.51.79:8888';
-
   return {
       method: 'GET',
       headers: {
@@ -15,9 +12,6 @@ const getOptions = (gameId) => {
           'Host': 'stats.wnba.com',
           'Referer': `https://stats.wnba.com/game/${gameId}/`
       },
-      agent: new http.Agent({
-          proxy: proxyUrl
-      })
   };
 };
 
@@ -51,11 +45,11 @@ const selectRecent5GamesPerTeam = async (games) => {
       .slice(0, 5)
       .map(game => game.game_id);
 
-    //console.log(`Team ${team.team_id} (${team.name}): ${recentGames.length} recent games`);
+    console.log(`Team ${team.team_id} (${team.name}): ${recentGames.length} recent games`);
     recentGamesByTeam[team.team_id] = recentGames;
   });
 
-  //console.log('Recent games by team:', recentGamesByTeam);
+  console.log('Recent games by team:', recentGamesByTeam);
 
   return recentGamesByTeam;
 };
@@ -86,17 +80,17 @@ const fetchPlayerStatsForGames = async (gameIds, recentGamesByTeam) => {
   const allStats = [];
   const processedGames = new Set(); // Track processed game IDs
   
-  //console.log('Fetching player stats for games...');
+  console.log('Fetching player stats for games...');
   const client = await pool.connect();
 
   try {
     for (const gameId of gameIds) {
       if (processedGames.has(gameId)) {
-        //console.log(`Game ID ${gameId} already processed. Skipping.`);
+        console.log(`Game ID ${gameId} already processed. Skipping.`);
         continue;
       }
 
-      //console.log('Fetching stats for game:', gameId);
+      console.log('Fetching stats for game:', gameId);
       const gameQuery = await client.query(
         'SELECT * FROM games WHERE game_id = $1',
         [gameId]
@@ -131,8 +125,8 @@ const fetchPlayerStatsForGames = async (gameIds, recentGamesByTeam) => {
         console.warn(`Game ID ${gameId} is not among the recent 5 games for either team. Skipping player stats for this game.`);
       }
 
-      // Delay of 30 seconds between each request
-      await new Promise(resolve => setTimeout(resolve, 5000));
+      // Delay of 2 seconds between each request
+      await new Promise(resolve => setTimeout(resolve, 2000));
     }
     return allStats;
   } catch (error) {
@@ -148,7 +142,7 @@ const deleteAllPlayerStats = async () => {
   const client = await pool.connect();
   try {
     await client.query('DELETE FROM player_stats');
-    //console.log('All player stats deleted successfully');
+    console.log('All player stats deleted successfully');
   } catch (error) {
     console.error('Error deleting all player stats:', error);
     throw new Error('Failed to delete all player stats');

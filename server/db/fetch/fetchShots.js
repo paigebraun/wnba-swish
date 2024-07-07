@@ -1,10 +1,7 @@
 const pool = require('../db');
-const http = require('http');
 
 // Define options and set up proxy IP
 const getOptions = (playerId) => {
-  const proxyUrl = 'http://198.74.51.79:8888';
-
   return {
       method: 'GET',
       headers: {
@@ -14,9 +11,6 @@ const getOptions = (playerId) => {
           'Host': 'stats.wnba.com',
           'Referer': `https://stats.wnba.com/events/?flag=3&CFID=&CFPARAMS=&PlayerID=${playerId}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2024&SeasonType=Regular%20Season&LeagueID=10&PerMode=PerGame&Split=general&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=5&DateFrom=&DateTo=&PORound=0&ShotClockRange=&MeasureType=Base&section=player&sct=plot`
       },
-      agent: new http.Agent({
-          proxy: proxyUrl
-      })
   };
 };
 
@@ -54,7 +48,7 @@ const fetchShots = async (playerId) => {
         const playerName = shotChartDetails.rowSet[0][headers.indexOf("PLAYER_NAME")];
         await client.query(insertQuery, [playerId, playerName, JSON.stringify(playerShots)]);
 
-        //console.log('Data inserted/updated successfully');
+        console.log('Data inserted/updated successfully');
     } catch (error) {
         console.error('Error inserting/updating data:', error);
     } finally {
@@ -75,12 +69,12 @@ const fetchAllShots = async () => {
         // Iterate through each player ID and call fetchShots function with a 10-second delay
         for (let i = 0; i < playerIds.length; i++) {
             const playerId = playerIds[i];
-            //console.log('Fetching shots for:', playerId);
+            console.log('Fetching shots for:', playerId);
             await fetchShots(playerId);
             
-            // Add a 10-second delay before the next iteration
+            // Add a 2-second delay before the next iteration
             if (i < playerIds.length - 1) {
-                await new Promise(resolve => setTimeout(resolve, 10000)); // 10 seconds
+                await new Promise(resolve => setTimeout(resolve, 2000)); // 2 seconds
             }
         }
 
