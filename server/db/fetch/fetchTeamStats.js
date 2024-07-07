@@ -58,7 +58,7 @@ const fetchAllTeamStats = async () => {
         for (const team of teams) {
             await fetchTeamStats(team.id, team.name);
         }
-        //console.log('All team statistics fetched successfully');
+        console.log('All team statistics fetched successfully');
     } catch (error) {
         console.error('Error fetching team statistics:', error);
     }

@@ -84,7 +84,7 @@ const fetchAllShots = async () => {
             }
         }
 
-        //console.log('All shots fetched successfully');
+        console.log('All shots fetched successfully');
     } catch (error) {
         console.error('Error fetching shots:', error);
     }

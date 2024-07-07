@@ -233,7 +233,7 @@ const fetchAllPlayerStats = async () => {
     // Insert/Update player stats in the database
     await upsertPlayerStats(allStats);
 
-    //console.log('Player stats updated successfully');
+    console.log('Player stats updated successfully');
   } catch (error) {
     console.error('Error updating player stats:', error);
   }

@@ -68,7 +68,7 @@ const fetchAllGames = async () => {
         for (const team of teams) {
             await fetchGames(team.id, team.name);
         }
-        //console.log('All games fetched successfully');
+        console.log('All games fetched successfully');
     } catch (error) {
         console.error('Error fetching games:', error);
     }

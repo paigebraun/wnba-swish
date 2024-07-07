@@ -60,7 +60,7 @@ async function fetchTeams() {
 
       // Commit the transaction
       await client.query('COMMIT');
-      //console.log('Teams saved successfully');
+      console.log('Teams saved successfully');
     } catch (error) {
       // Rollback the transaction if an error occurs
       await client.query('ROLLBACK');
