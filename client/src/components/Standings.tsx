@@ -28,23 +28,24 @@ function Standings() {
         fetchTeams();
     }, []);
 
-    // Sort teams by wins in descending order and then by losses in ascending order
-    const sortedTeams = teams.sort((a, b) => {
-        if (a.wins === b.wins) {
-            return a.losses - b.losses;
-        }
-        return b.wins - a.wins;
-    });
+    // Calculate win percentage and sort teams by it in descending order
+    const sortedTeams = teams
+        .map(team => ({
+            ...team,
+            winPercentage: team.wins / (team.wins + team.losses)
+        }))
+        .sort((a, b) => b.winPercentage - a.winPercentage);
 
     return (
         <div className="flex flex-col gap-4 my-10">
             {sortedTeams.map((team, index) => (
                 <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }} 
-                className="bg-gray-100 flex justify-between items-center rounded px-2 md:px-10">
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }} 
+                    className="bg-gray-100 flex justify-between items-center rounded px-2 md:px-10"
+                >
                     <div className="flex items-center md:gap-4">
                         <div className="bg-wOrange text-white md:font-bold flex items-center justify-center rounded-3xl h-8 w-8 md:h-10 md:w-10">
                             {index + 1}
@@ -56,9 +57,9 @@ function Standings() {
                         <h2
                             className={`
                                 p-2 rounded font-bold min-w-max
-                                ${team.wins >= team.losses + 2 ? 'bg-green-300' : ''}
-                                ${Math.abs(team.wins - team.losses) <= 1 ? 'bg-yellow-300' : ''}
-                                ${team.losses >= team.wins + 2 ? 'bg-red-300' : ''}
+                                ${team.winPercentage >= 0.6 ? 'bg-green-300' : ''}
+                                ${team.winPercentage >= 0.4 && team.winPercentage < 0.6 ? 'bg-yellow-300' : ''}
+                                ${team.winPercentage < 0.4 ? 'bg-red-300' : ''}
                             `}
                         >
                             {team.wins} - {team.losses}

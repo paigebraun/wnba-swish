@@ -1,4 +1,5 @@
 import { useParams, useLocation } from "react-router-dom";
+import { toZonedTime } from 'date-fns-tz';
 
 function PlayerInfo() {
     const { playerId } = useParams<{ playerId: string }>();
@@ -8,8 +9,9 @@ function PlayerInfo() {
 
     function formatDateString(dateStr: string): string {
         const dateObj: Date = new Date(dateStr);
+        const zonedDate = toZonedTime(dateObj, 'UTC'); // Convert to UTC
         const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-        const formattedDate: string = dateObj.toLocaleDateString('en-US', options);
+        const formattedDate: string = zonedDate.toLocaleDateString('en-US', options);
     
         return formattedDate;
     }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
+import { toZonedTime } from 'date-fns-tz';
 
 import Toggle from "./Toggle";
 import Glossary from "./Glossary";
@@ -93,9 +94,10 @@ function RecentStats() {
 
     function formatDate(dateString: string): string {
         const date = new Date(dateString);
-        const day: string = String(date.getDate()).padStart(2, '0');
-        const month: string = String(date.getMonth() + 1).padStart(2, '0');
-        const year: number = date.getFullYear();
+        const zonedDate = toZonedTime(date, 'UTC');
+        const day: string = String(zonedDate.getDate()).padStart(2, '0');
+        const month: string = String(zonedDate.getMonth() + 1).padStart(2, '0');
+        const year: number = zonedDate.getFullYear();
     
         return `${month}.${day}.${year}`;
     }

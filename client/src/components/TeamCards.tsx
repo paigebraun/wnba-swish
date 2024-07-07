@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import SwiperCore from 'swiper/core';
+import SwiperCore from 'swiper';
 import { Navigation } from "swiper/modules";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
@@ -57,16 +57,22 @@ function TeamCards() {
         return westernTeams.includes(teamAbbr) ? 'Western Conference' : 'Eastern Conference';
     }
 
+    // Add winPercentage to each team object
+    const teamsPCT = teams.map(team => ({
+        ...team,
+        winPercentage: team.wins / (team.wins + team.losses)
+    }));
+
     return (
-        <div className="md:h-[80vh] flex justify-center items-center overflow-hidden mb-10">
-            <div className="w-full max-w-screen-lg">
+        <div className="h-[80vh] flex justify-center items-center overflow-hidden mt-10 mb-10">
+            <div className="w-full">
                 <Swiper
                     spaceBetween={10}
                     slidesPerView={1}
                     breakpoints={{
-                        640: { slidesPerView: 2 },
-                        768: { slidesPerView: 3 },
-                        1024: { slidesPerView: 5 },
+                        500: { slidesPerView: 3 },
+                        1224: { slidesPerView: 5 },
+                        1500: { slidesPerView: 8 }
                     }}
                     grabCursor={true}
                     centeredSlides={true}
@@ -76,7 +82,7 @@ function TeamCards() {
                     className="mySwiper overflow-visible"
                     initialSlide={2}
                 >
-                    {teams.map((team, index) => (
+                    {teamsPCT.map((team, index) => (
                         <SwiperSlide key={index} className="rounded-lg p-2">
                             <div
                                 className={`flex justify-center p-4 rounded-lg transition-all ${
@@ -89,10 +95,9 @@ function TeamCards() {
                                         wins: team.wins,
                                         losses: team.losses,
                                     };
-                                    console.log("Saving to localStorage:", teamData);
                                     localStorage.setItem("teamData", JSON.stringify(teamData));
                                     navigate(`/team/${team.team_id}`);
-                                }}                                  
+                                }}
                             >
                                 <img src={team.logo} alt={team.name} className="object-cover" />
                             </div>
@@ -104,18 +109,18 @@ function TeamCards() {
                         <FaArrowLeft />
                     </motion.button>
                     <div className="flex flex-col items-center min-w-48">
-                        {teams.length > 0 && <h2 className="font-bold text-xl">{teams[currentIndex].display_name}</h2>}
-                        {teams.length > 0 && <h2>{getConference(teams[currentIndex].abbreviation)}</h2>}
-                        {teams.length > 0 && (
+                        {teamsPCT.length > 0 && <h2 className="font-bold text-xl">{teamsPCT[currentIndex].display_name}</h2>}
+                        {teamsPCT.length > 0 && <h2>{getConference(teamsPCT[currentIndex].abbreviation)}</h2>}
+                        {teamsPCT.length > 0 && (
                             <h2
                                 className={`
                                     mt-6 px-4 py-2 rounded font-bold
-                                    ${teams[currentIndex].wins >= teams[currentIndex].losses + 2 ? 'bg-green-300' : ''}
-                                    ${Math.abs(teams[currentIndex].wins - teams[currentIndex].losses) <= 1 ? 'bg-yellow-300' : ''}
-                                    ${teams[currentIndex].losses >= teams[currentIndex].wins + 2 ? 'bg-red-300' : ''}
+                                    ${teamsPCT[currentIndex].winPercentage >= 0.6 ? 'bg-green-300' : ''}
+                                    ${teamsPCT[currentIndex].winPercentage >= 0.4 && teamsPCT[currentIndex].winPercentage < 0.6 ? 'bg-yellow-300' : ''}
+                                    ${teamsPCT[currentIndex].winPercentage < 0.4 ? 'bg-red-300' : ''}
                                 `}
                             >
-                                {teams[currentIndex].wins} - {teams[currentIndex].losses}
+                                {teamsPCT[currentIndex].wins} - {teamsPCT[currentIndex].losses}
                             </h2>
                         )}
                     </div>
