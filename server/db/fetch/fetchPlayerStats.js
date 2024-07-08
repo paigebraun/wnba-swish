@@ -1,7 +1,7 @@
 const pool = require('../db');
 const { getAllTeams } = require('../utilities/teamUtils');
 
-// Define options and set up proxy IP
+// Define options
 const getOptions = (gameId) => {
   return {
       method: 'GET',
@@ -124,9 +124,6 @@ const fetchPlayerStatsForGames = async (gameIds, recentGamesByTeam) => {
       } else {
         console.warn(`Game ID ${gameId} is not among the recent 5 games for either team. Skipping player stats for this game.`);
       }
-
-      // Delay of 2 seconds between each request
-      await new Promise(resolve => setTimeout(resolve, 2000));
     }
     return allStats;
   } catch (error) {

@@ -1,6 +1,6 @@
 const pool = require('../db');
 
-// Define options and set up proxy IP
+// Define options
 const getOptions = (playerId) => {
   return {
       method: 'GET',
@@ -71,11 +71,6 @@ const fetchAllShots = async () => {
             const playerId = playerIds[i];
             console.log('Fetching shots for:', playerId);
             await fetchShots(playerId);
-            
-            // Add a 2-second delay before the next iteration
-            if (i < playerIds.length - 1) {
-                await new Promise(resolve => setTimeout(resolve, 2000)); // 2 seconds
-            }
         }
 
         console.log('All shots fetched successfully');
