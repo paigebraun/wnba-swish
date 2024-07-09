@@ -8,7 +8,7 @@ const getOptions = (playerId) => {
           'Accept': 'application/json, text/plain, */*',
           'Accept-Language': 'en-US,en;q=0.9',
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36',
-          'Host': 'stats.wnba.com',
+          //'Host': 'stats.wnba.com',
           'Referer': `https://stats.wnba.com/events/?flag=3&CFID=&CFPARAMS=&PlayerID=${playerId}&TeamID=0&GameID=&ContextMeasure=FGA&Season=2024&SeasonType=Regular%20Season&LeagueID=10&PerMode=PerGame&Split=general&PlusMinus=N&PaceAdjust=N&Rank=N&Outcome=&Location=&Month=0&SeasonSegment=&OpponentTeamID=0&VsConference=&VsDivision=&GameSegment=&Period=0&LastNGames=5&DateFrom=&DateTo=&PORound=0&ShotClockRange=&MeasureType=Base&section=player&sct=plot`
       },
   };
@@ -66,7 +66,7 @@ const fetchAllShots = async () => {
         // Extract player IDs from the query result
         const playerIds = result.rows.map(row => row.player_id);
 
-        // Iterate through each player ID and call fetchShots function with a 10-second delay
+        // Iterate through each player ID
         for (let i = 0; i < playerIds.length; i++) {
             const playerId = playerIds[i];
             console.log('Fetching shots for:', playerId);
