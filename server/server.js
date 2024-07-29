@@ -6,6 +6,7 @@ const gamesRoute = require('./routes/games');
 const playerStatsRoute = require('./routes/playerStats');
 const playerShotsRoute = require('./routes/playerShots');
 const updateRoute = require('./routes/update');
+const allPlayersRoute = require('./routes/allPlayers');
 const cors = require('cors');
 
 const app = express();
@@ -31,6 +32,7 @@ app.use('/api', gamesRoute);
 app.use('/api', playerStatsRoute);
 app.use('/api', playerShotsRoute);
 app.use('/api', updateRoute);
+app.use('/api', allPlayersRoute);
 
 // Start the server
 app.listen(PORT, () => {
