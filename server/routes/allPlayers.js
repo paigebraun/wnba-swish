@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/allplayers', async (req, res) => {
   try {
     const query = `
-      SELECT p.player_id, p.first_name, p.last_name, p.dob, p.height, p.weight, p.pos, p.hcc, p.exp, p.number, t.logo AS team_logo
+      SELECT p.player_id, p.first_name, p.last_name, p.dob, p.height, p.weight, p.pos, p.hcc, p.exp, p.number, p.team_id, t.logo AS team_logo
       FROM players p
       JOIN teams t ON p.team_id = t.team_id
     `;

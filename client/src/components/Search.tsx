@@ -17,6 +17,7 @@ interface Player {
   exp: string;
   number: number;
   team_logo: string;
+  team_id: string;
 }
 
 const Search: React.FC = () => {
@@ -69,6 +70,7 @@ const Search: React.FC = () => {
     setSearchQuery(e.target.value);
   };
 
+
   // Navigate to player page when player is clicked
   const handlePlayerClick = (player: Player) => {
     navigate(`/player/${player.player_id}`, {
@@ -82,6 +84,7 @@ const Search: React.FC = () => {
         name: `${player.first_name} ${player.last_name}`,
         number: player.number,
         teamLogo: player.team_logo,
+        teamId: player.team_id,
       },
     });
     handleBtn();
@@ -132,17 +135,17 @@ const Search: React.FC = () => {
             {searchResults.length > 0 && (
               <ul className="absolute top-full left-0 w-full bg-white border border-gray-200 max-h-40 overflow-y-scroll">
                 {searchResults.map((player, index) => (
-                  <li
-                    key={index}
-                    className="group px-2 py-1 hover:bg-gray-100 cursor-pointer relative"
-                    onClick={() => handlePlayerClick(player)}
-                  >
-                    {player.first_name} {player.last_name}
-                    <div className="hidden absolute right-3 top-1/2 transform -translate-y-1/2 bg-wOrange pl-5 pr-2 py-1 rounded-2xl text-white md:group-hover:block">
-                      <FaArrowRight />
-                    </div>
-                  </li>
-                ))}
+                    <li
+                        key={index}
+                        className="group px-2 py-1 hover:bg-gray-100 cursor-pointer relative"
+                        onClick={() => handlePlayerClick(player)}
+                    >
+                        {player.first_name} {player.last_name}
+                        <div className="hidden absolute right-3 top-1/2 transform -translate-y-1/2 bg-wOrange pl-5 pr-2 py-1 rounded-2xl text-white md:group-hover:block">
+                        <FaArrowRight />
+                        </div>
+                    </li>
+                    ))}
               </ul>
             )}
           </motion.div>
