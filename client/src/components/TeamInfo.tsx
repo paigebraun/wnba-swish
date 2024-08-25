@@ -62,6 +62,8 @@ const TeamInfo: React.FC = () => {
     return Math.round(num * 100) / 100;
   }
 
+  const winPercentage = (wins + losses > 0) ? wins / (wins + losses) : 0;
+
   return (
     <>
       <div className="flex flex-col md:flex-row w-full gap-5 mt-10">
@@ -85,12 +87,12 @@ const TeamInfo: React.FC = () => {
           )}
           <div className="flex flex-col md:flex-row gap-2 md:gap-4">
             <div className="flex flex-col gap-2 md:gap-4">
-              <h2
+            <h2
                 className={`
                   px-4 py-2 rounded font-bold text-center whitespace-nowrap
-                  ${wins >= losses + 2 ? "bg-green-300" : ""}
-                  ${Math.abs(wins - losses) <= 1 ? "bg-yellow-300" : ""}
-                  ${losses >= wins + 2 ? "bg-red-300" : ""}
+                  ${winPercentage >= 0.6 ? "bg-green-300" : ""}
+                  ${winPercentage >= 0.4 && winPercentage < 0.6 ? "bg-yellow-300" : ""}
+                  ${winPercentage < 0.4 ? "bg-red-300" : ""}
                 `}
               >
                 {wins} - {losses}
