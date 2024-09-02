@@ -27,8 +27,19 @@ const fetchPlayers = async (espnId, teamName) => {
             const insertPlayerQuery = `
                 INSERT INTO players (espn_id, team_id, first_name, last_name, pos, number, exp, hcc, height, weight, dob, player_id)
                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
-                ON CONFLICT (espn_id, first_name, last_name)
-                DO UPDATE SET pos = EXCLUDED.pos, team_id = EXCLUDED.team_id, number = EXCLUDED.number, exp = EXCLUDED.exp, hcc = EXCLUDED.hcc, height = EXCLUDED.height, weight = EXCLUDED.weight, dob = EXCLUDED.dob, player_id = EXCLUDED.player_id
+                ON CONFLICT (player_id) 
+                DO UPDATE SET 
+                    espn_id = EXCLUDED.espn_id,
+                    team_id = EXCLUDED.team_id,
+                    first_name = EXCLUDED.first_name,
+                    last_name = EXCLUDED.last_name,
+                    pos = EXCLUDED.pos,
+                    number = EXCLUDED.number,
+                    exp = EXCLUDED.exp,
+                    hcc = EXCLUDED.hcc,
+                    height = EXCLUDED.height,
+                    weight = EXCLUDED.weight,
+                    dob = EXCLUDED.dob
             `;
             await client.query(insertPlayerQuery, [espnId, team_id, first_name, last_name, pos, number, exp, hcc, height, weight, dob, player_id]);
         }));
