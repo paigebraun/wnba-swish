@@ -14,35 +14,49 @@ function RecentStats() {
     const { teamId } = location.state as { teamId: string };
 
     interface PlayerStat {
-        game_id: string | number;
+        game_id: number;
         team_id: number;
-        min: string | null;
-        fgm: number | string | null;
-        fga: number | string | null;
-        fg_pct: string | number | null;
-        fg3m: number | string | null;
-        fg3a: number | string | null;
-        fg3_pct: string | number | null;
-        ftm: number | string | null;
-        fta: number | string | null;
-        ft_pct: string | number | null;
-        oreb: number | string | null;
-        dreb: number | string | null;
-        reb: number | string | null;
-        ast: number | string | null;
-        stl: number | string | null;
-        blk: number | string | null;
-        tos: number | string | null;
-        pf: number | string | null;
-        pts: number | string | null;
-        plus_minus: string | number | null;
+        team_abbreviation: string;
+        team_city: string;
+        player_name: string;
+        nickname: string;
+        start_position: string;
+        comment: string;
+        min: string;
+        fgm: string;
+        fga: string;
+        fg_pct: string;
+        fg3m: string;
+        fg3a: string;
+        fg3_pct: string;
+        ftm: string;
+        fta: string;
+        ft_pct: string;
+        oreb: string;
+        dreb: string;
+        reb: string;
+        ast: string;
+        stl: string;
+        blk: string;
+        tos: string;
+        pf: string;
+        pts: string;
+        plus_minus: string;
         date: string;
         home_team_abbr: string;
         away_team_abbr: string;
         home_team_id: number;
-        home_score: string | number;
-        away_score: string | number;
+        home_score: number;
+        away_score: number;
         player_id: number;
+        home_team_name: string | null;
+        home_team_city: string | null;
+        away_team_name: string | null;
+        away_team_city: string | null;
+        status: string | null;
+        arena: string;
+        arena_city: string;
+        arena_state: string;
     }
 
     const [playerStats, setPlayerStats] = useState<PlayerStat[]>([]);
@@ -78,7 +92,7 @@ function RecentStats() {
                         }
                         return null;
                     })
-                    .filter((stat) => stat !== null);
+                    .filter((stat): stat is PlayerStat => stat !== null);
 
                 // Filter out null values (in case no corresponding game is found)
                 const validStats = combinedStats.filter(
