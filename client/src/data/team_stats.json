@@ -1,0 +1,1058 @@
+[
+  {
+    "id": 1,
+    "espn_id": 20,
+    "stat_type": "Games Played",
+    "stat_abbr": "GP",
+    "team_id": 1611661330,
+    "value": 40
+  },
+  {
+    "id": 2,
+    "espn_id": 20,
+    "stat_type": "Points per Game",
+    "stat_abbr": "PPG",
+    "team_id": 1611661330,
+    "value": 77
+  },
+  {
+    "id": 3,
+    "espn_id": 20,
+    "stat_type": "Rebounds per Game",
+    "stat_abbr": "RPG",
+    "team_id": 1611661330,
+    "value": 36.1
+  },
+  {
+    "id": 4,
+    "espn_id": 20,
+    "stat_type": "Assist per Game",
+    "stat_abbr": "APG",
+    "team_id": 1611661330,
+    "value": 18.375
+  },
+  {
+    "id": 5,
+    "espn_id": 20,
+    "stat_type": "Steals per Game",
+    "stat_abbr": "SPG",
+    "team_id": 1611661330,
+    "value": 7.2
+  },
+  {
+    "id": 6,
+    "espn_id": 20,
+    "stat_type": "Blocks per Game",
+    "stat_abbr": "BPG",
+    "team_id": 1611661330,
+    "value": 3.7
+  },
+  {
+    "id": 7,
+    "espn_id": 20,
+    "stat_type": "Field Goal Percentage",
+    "stat_abbr": "FG%",
+    "team_id": 1611661330,
+    "value": 40.8
+  },
+  {
+    "id": 8,
+    "espn_id": 20,
+    "stat_type": "3-Point Field Goal Percentage",
+    "stat_abbr": "3P%",
+    "team_id": 1611661330,
+    "value": 30.8
+  },
+  {
+    "id": 9,
+    "espn_id": 20,
+    "stat_type": "Free Throw Percentage",
+    "stat_abbr": "FT%",
+    "team_id": 1611661330,
+    "value": 77.10000000000001
+  },
+  {
+    "id": 10,
+    "espn_id": 20,
+    "stat_type": "Turnovers",
+    "stat_abbr": "TO",
+    "team_id": 1611661330,
+    "value": 13.775
+  },
+  {
+    "id": 11,
+    "espn_id": 20,
+    "stat_type": "Personal Fouls",
+    "stat_abbr": "PF",
+    "team_id": 1611661330,
+    "value": 16.85
+  },
+  {
+    "id": 12,
+    "espn_id": 19,
+    "stat_type": "Games Played",
+    "stat_abbr": "GP",
+    "team_id": 1611661329,
+    "value": 40
+  },
+  {
+    "id": 13,
+    "espn_id": 19,
+    "stat_type": "Points per Game",
+    "stat_abbr": "PPG",
+    "team_id": 1611661329,
+    "value": 77.4
+  },
+  {
+    "id": 14,
+    "espn_id": 19,
+    "stat_type": "Rebounds per Game",
+    "stat_abbr": "RPG",
+    "team_id": 1611661329,
+    "value": 36.6
+  },
+  {
+    "id": 15,
+    "espn_id": 19,
+    "stat_type": "Assist per Game",
+    "stat_abbr": "APG",
+    "team_id": 1611661329,
+    "value": 18.975
+  },
+  {
+    "id": 16,
+    "espn_id": 19,
+    "stat_type": "Steals per Game",
+    "stat_abbr": "SPG",
+    "team_id": 1611661329,
+    "value": 7
+  },
+  {
+    "id": 17,
+    "espn_id": 19,
+    "stat_type": "Blocks per Game",
+    "stat_abbr": "BPG",
+    "team_id": 1611661329,
+    "value": 3.775
+  },
+  {
+    "id": 18,
+    "espn_id": 19,
+    "stat_type": "Field Goal Percentage",
+    "stat_abbr": "FG%",
+    "team_id": 1611661329,
+    "value": 42.199999999999996
+  },
+  {
+    "id": 19,
+    "espn_id": 19,
+    "stat_type": "3-Point Field Goal Percentage",
+    "stat_abbr": "3P%",
+    "team_id": 1611661329,
+    "value": 32.300000000000004
+  },
+  {
+    "id": 20,
+    "espn_id": 19,
+    "stat_type": "Free Throw Percentage",
+    "stat_abbr": "FT%",
+    "team_id": 1611661329,
+    "value": 74.2
+  },
+  {
+    "id": 21,
+    "espn_id": 19,
+    "stat_type": "Turnovers",
+    "stat_abbr": "TO",
+    "team_id": 1611661329,
+    "value": 14.275
+  },
+  {
+    "id": 22,
+    "espn_id": 19,
+    "stat_type": "Personal Fouls",
+    "stat_abbr": "PF",
+    "team_id": 1611661329,
+    "value": 19.025
+  },
+  {
+    "id": 23,
+    "espn_id": 18,
+    "stat_type": "Games Played",
+    "stat_abbr": "GP",
+    "team_id": 1611661323,
+    "value": 40
+  },
+  {
+    "id": 24,
+    "espn_id": 18,
+    "stat_type": "Points per Game",
+    "stat_abbr": "PPG",
+    "team_id": 1611661323,
+    "value": 80.1
+  },
+  {
+    "id": 25,
+    "espn_id": 18,
+    "stat_type": "Rebounds per Game",
+    "stat_abbr": "RPG",
+    "team_id": 1611661323,
+    "value": 33.45
+  },
+  {
+    "id": 26,
+    "espn_id": 18,
+    "stat_type": "Assist per Game",
+    "stat_abbr": "APG",
+    "team_id": 1611661323,
+    "value": 19.9
+  },
+  {
+    "id": 27,
+    "espn_id": 18,
+    "stat_type": "Steals per Game",
+    "stat_abbr": "SPG",
+    "team_id": 1611661323,
+    "value": 8.15
+  },
+  {
+    "id": 28,
+    "espn_id": 18,
+    "stat_type": "Blocks per Game",
+    "stat_abbr": "BPG",
+    "team_id": 1611661323,
+    "value": 3.65
+  },
+  {
+    "id": 29,
+    "espn_id": 18,
+    "stat_type": "Field Goal Percentage",
+    "stat_abbr": "FG%",
+    "team_id": 1611661323,
+    "value": 44.4
+  },
+  {
+    "id": 30,
+    "espn_id": 18,
+    "stat_type": "3-Point Field Goal Percentage",
+    "stat_abbr": "3P%",
+    "team_id": 1611661323,
+    "value": 32.7
+  },
+  {
+    "id": 31,
+    "espn_id": 18,
+    "stat_type": "Free Throw Percentage",
+    "stat_abbr": "FT%",
+    "team_id": 1611661323,
+    "value": 75.3
+  },
+  {
+    "id": 32,
+    "espn_id": 18,
+    "stat_type": "Turnovers",
+    "stat_abbr": "TO",
+    "team_id": 1611661323,
+    "value": 13.325
+  },
+  {
+    "id": 33,
+    "espn_id": 18,
+    "stat_type": "Personal Fouls",
+    "stat_abbr": "PF",
+    "team_id": 1611661323,
+    "value": 16.125
+  },
+  {
+    "id": 34,
+    "espn_id": 3,
+    "stat_type": "Games Played",
+    "stat_abbr": "GP",
+    "team_id": 1611661321,
+    "value": 40
+  },
+  {
+    "id": 35,
+    "espn_id": 3,
+    "stat_type": "Points per Game",
+    "stat_abbr": "PPG",
+    "team_id": 1611661321,
+    "value": 84.2
+  },
+  {
+    "id": 36,
+    "espn_id": 3,
+    "stat_type": "Rebounds per Game",
+    "stat_abbr": "RPG",
+    "team_id": 1611661321,
+    "value": 34.75
+  },
+  {
+    "id": 37,
+    "espn_id": 3,
+    "stat_type": "Assist per Game",
+    "stat_abbr": "APG",
+    "team_id": 1611661321,
+    "value": 20.425
+  },
+  {
+    "id": 38,
+    "espn_id": 3,
+    "stat_type": "Steals per Game",
+    "stat_abbr": "SPG",
+    "team_id": 1611661321,
+    "value": 7.125
+  },
+  {
+    "id": 39,
+    "espn_id": 3,
+    "stat_type": "Blocks per Game",
+    "stat_abbr": "BPG",
+    "team_id": 1611661321,
+    "value": 3.95
+  },
+  {
+    "id": 40,
+    "espn_id": 3,
+    "stat_type": "Field Goal Percentage",
+    "stat_abbr": "FG%",
+    "team_id": 1611661321,
+    "value": 44.6
+  },
+  {
+    "id": 41,
+    "espn_id": 3,
+    "stat_type": "3-Point Field Goal Percentage",
+    "stat_abbr": "3P%",
+    "team_id": 1611661321,
+    "value": 32.6
+  },
+  {
+    "id": 42,
+    "espn_id": 3,
+    "stat_type": "Free Throw Percentage",
+    "stat_abbr": "FT%",
+    "team_id": 1611661321,
+    "value": 78.60000000000001
+  },
+  {
+    "id": 43,
+    "espn_id": 3,
+    "stat_type": "Turnovers",
+    "stat_abbr": "TO",
+    "team_id": 1611661321,
+    "value": 15.65
+  },
+  {
+    "id": 44,
+    "espn_id": 3,
+    "stat_type": "Personal Fouls",
+    "stat_abbr": "PF",
+    "team_id": 1611661321,
+    "value": 18.475
+  },
+  {
+    "id": 45,
+    "espn_id": 5,
+    "stat_type": "Games Played",
+    "stat_abbr": "GP",
+    "team_id": 1611661325,
+    "value": 40
+  },
+  {
+    "id": 46,
+    "espn_id": 5,
+    "stat_type": "Points per Game",
+    "stat_abbr": "PPG",
+    "team_id": 1611661325,
+    "value": 84.975
+  },
+  {
+    "id": 47,
+    "espn_id": 5,
+    "stat_type": "Rebounds per Game",
+    "stat_abbr": "RPG",
+    "team_id": 1611661325,
+    "value": 35.05
+  },
+  {
+    "id": 48,
+    "espn_id": 5,
+    "stat_type": "Assist per Game",
+    "stat_abbr": "APG",
+    "team_id": 1611661325,
+    "value": 20.4
+  },
+  {
+    "id": 49,
+    "espn_id": 5,
+    "stat_type": "Steals per Game",
+    "stat_abbr": "SPG",
+    "team_id": 1611661325,
+    "value": 5.875
+  },
+  {
+    "id": 50,
+    "espn_id": 5,
+    "stat_type": "Blocks per Game",
+    "stat_abbr": "BPG",
+    "team_id": 1611661325,
+    "value": 4.325
+  },
+  {
+    "id": 51,
+    "espn_id": 5,
+    "stat_type": "Field Goal Percentage",
+    "stat_abbr": "FG%",
+    "team_id": 1611661325,
+    "value": 45.6
+  },
+  {
+    "id": 52,
+    "espn_id": 5,
+    "stat_type": "3-Point Field Goal Percentage",
+    "stat_abbr": "3P%",
+    "team_id": 1611661325,
+    "value": 35.6
+  },
+  {
+    "id": 53,
+    "espn_id": 5,
+    "stat_type": "Free Throw Percentage",
+    "stat_abbr": "FT%",
+    "team_id": 1611661325,
+    "value": 77.5
+  },
+  {
+    "id": 54,
+    "espn_id": 5,
+    "stat_type": "Turnovers",
+    "stat_abbr": "TO",
+    "team_id": 1611661325,
+    "value": 15.3
+  },
+  {
+    "id": 55,
+    "espn_id": 5,
+    "stat_type": "Personal Fouls",
+    "stat_abbr": "PF",
+    "team_id": 1611661325,
+    "value": 18.15
+  },
+  {
+    "id": 56,
+    "espn_id": 17,
+    "stat_type": "Games Played",
+    "stat_abbr": "GP",
+    "team_id": 1611661319,
+    "value": 40
+  },
+  {
+    "id": 57,
+    "espn_id": 17,
+    "stat_type": "Points per Game",
+    "stat_abbr": "PPG",
+    "team_id": 1611661319,
+    "value": 86.375
+  },
+  {
+    "id": 58,
+    "espn_id": 17,
+    "stat_type": "Rebounds per Game",
+    "stat_abbr": "RPG",
+    "team_id": 1611661319,
+    "value": 34.1
+  },
+  {
+    "id": 59,
+    "espn_id": 17,
+    "stat_type": "Assist per Game",
+    "stat_abbr": "APG",
+    "team_id": 1611661319,
+    "value": 20.5
+  },
+  {
+    "id": 60,
+    "espn_id": 17,
+    "stat_type": "Steals per Game",
+    "stat_abbr": "SPG",
+    "team_id": 1611661319,
+    "value": 7.05
+  },
+  {
+    "id": 61,
+    "espn_id": 17,
+    "stat_type": "Blocks per Game",
+    "stat_abbr": "BPG",
+    "team_id": 1611661319,
+    "value": 4.95
+  },
+  {
+    "id": 62,
+    "espn_id": 17,
+    "stat_type": "Field Goal Percentage",
+    "stat_abbr": "FG%",
+    "team_id": 1611661319,
+    "value": 45.4
+  },
+  {
+    "id": 63,
+    "espn_id": 17,
+    "stat_type": "3-Point Field Goal Percentage",
+    "stat_abbr": "3P%",
+    "team_id": 1611661319,
+    "value": 35.5
+  },
+  {
+    "id": 64,
+    "espn_id": 17,
+    "stat_type": "Free Throw Percentage",
+    "stat_abbr": "FT%",
+    "team_id": 1611661319,
+    "value": 82.8
+  },
+  {
+    "id": 65,
+    "espn_id": 17,
+    "stat_type": "Turnovers",
+    "stat_abbr": "TO",
+    "team_id": 1611661319,
+    "value": 11.65
+  },
+  {
+    "id": 66,
+    "espn_id": 17,
+    "stat_type": "Personal Fouls",
+    "stat_abbr": "PF",
+    "team_id": 1611661319,
+    "value": 16.525
+  },
+  {
+    "id": 67,
+    "espn_id": 6,
+    "stat_type": "Games Played",
+    "stat_abbr": "GP",
+    "team_id": 1611661320,
+    "value": 40
+  },
+  {
+    "id": 68,
+    "espn_id": 6,
+    "stat_type": "Points per Game",
+    "stat_abbr": "PPG",
+    "team_id": 1611661320,
+    "value": 78.4
+  },
+  {
+    "id": 69,
+    "espn_id": 6,
+    "stat_type": "Rebounds per Game",
+    "stat_abbr": "RPG",
+    "team_id": 1611661320,
+    "value": 32.675
+  },
+  {
+    "id": 70,
+    "espn_id": 6,
+    "stat_type": "Assist per Game",
+    "stat_abbr": "APG",
+    "team_id": 1611661320,
+    "value": 19.675
+  },
+  {
+    "id": 71,
+    "espn_id": 6,
+    "stat_type": "Steals per Game",
+    "stat_abbr": "SPG",
+    "team_id": 1611661320,
+    "value": 7.3
+  },
+  {
+    "id": 72,
+    "espn_id": 6,
+    "stat_type": "Blocks per Game",
+    "stat_abbr": "BPG",
+    "team_id": 1611661320,
+    "value": 3.225
+  },
+  {
+    "id": 73,
+    "espn_id": 6,
+    "stat_type": "Field Goal Percentage",
+    "stat_abbr": "FG%",
+    "team_id": 1611661320,
+    "value": 42.3
+  },
+  {
+    "id": 74,
+    "espn_id": 6,
+    "stat_type": "3-Point Field Goal Percentage",
+    "stat_abbr": "3P%",
+    "team_id": 1611661320,
+    "value": 32
+  },
+  {
+    "id": 75,
+    "espn_id": 6,
+    "stat_type": "Free Throw Percentage",
+    "stat_abbr": "FT%",
+    "team_id": 1611661320,
+    "value": 76.5
+  },
+  {
+    "id": 76,
+    "espn_id": 6,
+    "stat_type": "Turnovers",
+    "stat_abbr": "TO",
+    "team_id": 1611661320,
+    "value": 15.975
+  },
+  {
+    "id": 77,
+    "espn_id": 6,
+    "stat_type": "Personal Fouls",
+    "stat_abbr": "PF",
+    "team_id": 1611661320,
+    "value": 17.875
+  },
+  {
+    "id": 78,
+    "espn_id": 8,
+    "stat_type": "Games Played",
+    "stat_abbr": "GP",
+    "team_id": 1611661324,
+    "value": 40
+  },
+  {
+    "id": 79,
+    "espn_id": 8,
+    "stat_type": "Points per Game",
+    "stat_abbr": "PPG",
+    "team_id": 1611661324,
+    "value": 81.975
+  },
+  {
+    "id": 80,
+    "espn_id": 8,
+    "stat_type": "Rebounds per Game",
+    "stat_abbr": "RPG",
+    "team_id": 1611661324,
+    "value": 34.25
+  },
+  {
+    "id": 81,
+    "espn_id": 8,
+    "stat_type": "Assist per Game",
+    "stat_abbr": "APG",
+    "team_id": 1611661324,
+    "value": 23.025
+  },
+  {
+    "id": 82,
+    "espn_id": 8,
+    "stat_type": "Steals per Game",
+    "stat_abbr": "SPG",
+    "team_id": 1611661324,
+    "value": 8.575
+  },
+  {
+    "id": 83,
+    "espn_id": 8,
+    "stat_type": "Blocks per Game",
+    "stat_abbr": "BPG",
+    "team_id": 1611661324,
+    "value": 4.2
+  },
+  {
+    "id": 84,
+    "espn_id": 8,
+    "stat_type": "Field Goal Percentage",
+    "stat_abbr": "FG%",
+    "team_id": 1611661324,
+    "value": 44.800000000000004
+  },
+  {
+    "id": 85,
+    "espn_id": 8,
+    "stat_type": "3-Point Field Goal Percentage",
+    "stat_abbr": "3P%",
+    "team_id": 1611661324,
+    "value": 38
+  },
+  {
+    "id": 86,
+    "espn_id": 8,
+    "stat_type": "Free Throw Percentage",
+    "stat_abbr": "FT%",
+    "team_id": 1611661324,
+    "value": 79
+  },
+  {
+    "id": 87,
+    "espn_id": 8,
+    "stat_type": "Turnovers",
+    "stat_abbr": "TO",
+    "team_id": 1611661324,
+    "value": 14.25
+  },
+  {
+    "id": 88,
+    "espn_id": 8,
+    "stat_type": "Personal Fouls",
+    "stat_abbr": "PF",
+    "team_id": 1611661324,
+    "value": 16.35
+  },
+  {
+    "id": 89,
+    "espn_id": 9,
+    "stat_type": "Games Played",
+    "stat_abbr": "GP",
+    "team_id": 1611661313,
+    "value": 40
+  },
+  {
+    "id": 90,
+    "espn_id": 9,
+    "stat_type": "Points per Game",
+    "stat_abbr": "PPG",
+    "team_id": 1611661313,
+    "value": 85.6
+  },
+  {
+    "id": 91,
+    "espn_id": 9,
+    "stat_type": "Rebounds per Game",
+    "stat_abbr": "RPG",
+    "team_id": 1611661313,
+    "value": 36.575
+  },
+  {
+    "id": 92,
+    "espn_id": 9,
+    "stat_type": "Assist per Game",
+    "stat_abbr": "APG",
+    "team_id": 1611661313,
+    "value": 22.775
+  },
+  {
+    "id": 93,
+    "espn_id": 9,
+    "stat_type": "Steals per Game",
+    "stat_abbr": "SPG",
+    "team_id": 1611661313,
+    "value": 7.9
+  },
+  {
+    "id": 94,
+    "espn_id": 9,
+    "stat_type": "Blocks per Game",
+    "stat_abbr": "BPG",
+    "team_id": 1611661313,
+    "value": 4.475
+  },
+  {
+    "id": 95,
+    "espn_id": 9,
+    "stat_type": "Field Goal Percentage",
+    "stat_abbr": "FG%",
+    "team_id": 1611661313,
+    "value": 44.800000000000004
+  },
+  {
+    "id": 96,
+    "espn_id": 9,
+    "stat_type": "3-Point Field Goal Percentage",
+    "stat_abbr": "3P%",
+    "team_id": 1611661313,
+    "value": 34.9
+  },
+  {
+    "id": 97,
+    "espn_id": 9,
+    "stat_type": "Free Throw Percentage",
+    "stat_abbr": "FT%",
+    "team_id": 1611661313,
+    "value": 81.39999999999999
+  },
+  {
+    "id": 98,
+    "espn_id": 9,
+    "stat_type": "Turnovers",
+    "stat_abbr": "TO",
+    "team_id": 1611661313,
+    "value": 13.825
+  },
+  {
+    "id": 99,
+    "espn_id": 9,
+    "stat_type": "Personal Fouls",
+    "stat_abbr": "PF",
+    "team_id": 1611661313,
+    "value": 15.375
+  },
+  {
+    "id": 100,
+    "espn_id": 11,
+    "stat_type": "Games Played",
+    "stat_abbr": "GP",
+    "team_id": 1611661317,
+    "value": 40
+  },
+  {
+    "id": 101,
+    "espn_id": 11,
+    "stat_type": "Points per Game",
+    "stat_abbr": "PPG",
+    "team_id": 1611661317,
+    "value": 81.45
+  },
+  {
+    "id": 102,
+    "espn_id": 11,
+    "stat_type": "Rebounds per Game",
+    "stat_abbr": "RPG",
+    "team_id": 1611661317,
+    "value": 32.325
+  },
+  {
+    "id": 103,
+    "espn_id": 11,
+    "stat_type": "Assist per Game",
+    "stat_abbr": "APG",
+    "team_id": 1611661317,
+    "value": 19.85
+  },
+  {
+    "id": 104,
+    "espn_id": 11,
+    "stat_type": "Steals per Game",
+    "stat_abbr": "SPG",
+    "team_id": 1611661317,
+    "value": 6.6
+  },
+  {
+    "id": 105,
+    "espn_id": 11,
+    "stat_type": "Blocks per Game",
+    "stat_abbr": "BPG",
+    "team_id": 1611661317,
+    "value": 4.725
+  },
+  {
+    "id": 106,
+    "espn_id": 11,
+    "stat_type": "Field Goal Percentage",
+    "stat_abbr": "FG%",
+    "team_id": 1611661317,
+    "value": 43.9
+  },
+  {
+    "id": 107,
+    "espn_id": 11,
+    "stat_type": "3-Point Field Goal Percentage",
+    "stat_abbr": "3P%",
+    "team_id": 1611661317,
+    "value": 32.6
+  },
+  {
+    "id": 108,
+    "espn_id": 11,
+    "stat_type": "Free Throw Percentage",
+    "stat_abbr": "FT%",
+    "team_id": 1611661317,
+    "value": 79.9
+  },
+  {
+    "id": 109,
+    "espn_id": 11,
+    "stat_type": "Turnovers",
+    "stat_abbr": "TO",
+    "team_id": 1611661317,
+    "value": 14.1
+  },
+  {
+    "id": 110,
+    "espn_id": 11,
+    "stat_type": "Personal Fouls",
+    "stat_abbr": "PF",
+    "team_id": 1611661317,
+    "value": 16.9
+  },
+  {
+    "id": 111,
+    "espn_id": 14,
+    "stat_type": "Games Played",
+    "stat_abbr": "GP",
+    "team_id": 1611661328,
+    "value": 40
+  },
+  {
+    "id": 112,
+    "espn_id": 14,
+    "stat_type": "Points per Game",
+    "stat_abbr": "PPG",
+    "team_id": 1611661328,
+    "value": 83.225
+  },
+  {
+    "id": 113,
+    "espn_id": 14,
+    "stat_type": "Rebounds per Game",
+    "stat_abbr": "RPG",
+    "team_id": 1611661328,
+    "value": 34.65
+  },
+  {
+    "id": 114,
+    "espn_id": 14,
+    "stat_type": "Assist per Game",
+    "stat_abbr": "APG",
+    "team_id": 1611661328,
+    "value": 20.65
+  },
+  {
+    "id": 115,
+    "espn_id": 14,
+    "stat_type": "Steals per Game",
+    "stat_abbr": "SPG",
+    "team_id": 1611661328,
+    "value": 9.3
+  },
+  {
+    "id": 116,
+    "espn_id": 14,
+    "stat_type": "Blocks per Game",
+    "stat_abbr": "BPG",
+    "team_id": 1611661328,
+    "value": 5.15
+  },
+  {
+    "id": 117,
+    "espn_id": 14,
+    "stat_type": "Field Goal Percentage",
+    "stat_abbr": "FG%",
+    "team_id": 1611661328,
+    "value": 43.5
+  },
+  {
+    "id": 118,
+    "espn_id": 14,
+    "stat_type": "3-Point Field Goal Percentage",
+    "stat_abbr": "3P%",
+    "team_id": 1611661328,
+    "value": 28.799999999999997
+  },
+  {
+    "id": 119,
+    "espn_id": 14,
+    "stat_type": "Free Throw Percentage",
+    "stat_abbr": "FT%",
+    "team_id": 1611661328,
+    "value": 84
+  },
+  {
+    "id": 120,
+    "espn_id": 14,
+    "stat_type": "Turnovers",
+    "stat_abbr": "TO",
+    "team_id": 1611661328,
+    "value": 13.075
+  },
+  {
+    "id": 121,
+    "espn_id": 14,
+    "stat_type": "Personal Fouls",
+    "stat_abbr": "PF",
+    "team_id": 1611661328,
+    "value": 16.5
+  },
+  {
+    "id": 122,
+    "espn_id": 16,
+    "stat_type": "Games Played",
+    "stat_abbr": "GP",
+    "team_id": 1611661322,
+    "value": 40
+  },
+  {
+    "id": 123,
+    "espn_id": 16,
+    "stat_type": "Points per Game",
+    "stat_abbr": "PPG",
+    "team_id": 1611661322,
+    "value": 79.3
+  },
+  {
+    "id": 124,
+    "espn_id": 16,
+    "stat_type": "Rebounds per Game",
+    "stat_abbr": "RPG",
+    "team_id": 1611661322,
+    "value": 31.85
+  },
+  {
+    "id": 125,
+    "espn_id": 16,
+    "stat_type": "Assist per Game",
+    "stat_abbr": "APG",
+    "team_id": 1611661322,
+    "value": 21.575
+  },
+  {
+    "id": 126,
+    "espn_id": 16,
+    "stat_type": "Steals per Game",
+    "stat_abbr": "SPG",
+    "team_id": 1611661322,
+    "value": 7.275
+  },
+  {
+    "id": 127,
+    "espn_id": 16,
+    "stat_type": "Blocks per Game",
+    "stat_abbr": "BPG",
+    "team_id": 1611661322,
+    "value": 3.425
+  },
+  {
+    "id": 128,
+    "espn_id": 16,
+    "stat_type": "Field Goal Percentage",
+    "stat_abbr": "FG%",
+    "team_id": 1611661322,
+    "value": 43.3
+  },
+  {
+    "id": 129,
+    "espn_id": 16,
+    "stat_type": "3-Point Field Goal Percentage",
+    "stat_abbr": "3P%",
+    "team_id": 1611661322,
+    "value": 36.6
+  },
+  {
+    "id": 130,
+    "espn_id": 16,
+    "stat_type": "Free Throw Percentage",
+    "stat_abbr": "FT%",
+    "team_id": 1611661322,
+    "value": 76.7
+  },
+  {
+    "id": 131,
+    "espn_id": 16,
+    "stat_type": "Turnovers",
+    "stat_abbr": "TO",
+    "team_id": 1611661322,
+    "value": 16.05
+  },
+  {
+    "id": 132,
+    "espn_id": 16,
+    "stat_type": "Personal Fouls",
+    "stat_abbr": "PF",
+    "team_id": 1611661322,
+    "value": 18.425
+  }
+]

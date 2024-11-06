@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import * as d3 from 'd3';
-import wnbaHalfCourtImage from '../assets/wnba-half-court-black.png';
+import { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
+import * as d3 from "d3";
+import wnbaHalfCourtImage from "../assets/wnba-half-court-black.png";
+import playerShotsData from "../data/player_shots.json";
 
 interface Shot {
     loc_x: number;
@@ -13,40 +14,42 @@ interface Shot {
 function PlayerShots() {
     const { playerId } = useParams<{ playerId: string }>();
     const [shots, setShots] = useState<Shot[]>([]);
-    const [view, setView] = useState<'heatmap' | 'shotplot'>('shotplot');
+    const [view, setView] = useState<"heatmap" | "shotplot">("shotplot");
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
     const [tabUnderlineLeft, setTabUnderlineLeft] = useState(0);
     const [hasError, setHasError] = useState(false);
     const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
 
-    useEffect(() => {
-        const fetchShots = async () => {
-            try {
-                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/player/${playerId}/shots`);
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    throw new Error(`Network response was not ok: ${errorText}`);
-                }
-                const data: Shot[] = await response.json();
-                if (data.length===0) {
-                    setHasError(true);
-                } else {
-                    setShots(data);
-                    setHasError(false);
-                }
-            } catch (error) {
-                console.error('Error fetching player shots:', error);
-                setHasError(true);
-            }
-        };
+    const fetchPlayerShots = () => {
+        try {
+            const playerData = playerShotsData.find(
+                (player: any) => player.player_id.toString() === playerId
+            );
 
-        fetchShots();
+            if (!playerData) {
+                throw new Error("Player not found");
+            }
+
+            if (playerData.shots.length === 0) {
+                setHasError(true);
+            } else {
+                setShots(playerData.shots);
+                setHasError(false);
+            }
+        } catch (error) {
+            console.error("Error loading player shots:", error);
+            setHasError(true);
+        }
+    };
+
+    useEffect(() => {
+        fetchPlayerShots();
     }, [playerId]);
 
     useEffect(() => {
         if (shots.length > 0) {
-            if (view === 'heatmap') {
+            if (view === "heatmap") {
                 drawHeatMap(shots);
             } else {
                 drawShotPlot(shots);
@@ -64,133 +67,150 @@ function PlayerShots() {
         }
 
         setTabPosition();
-        window.addEventListener('resize', setTabPosition);
+        window.addEventListener("resize", setTabPosition);
 
-        return () => window.removeEventListener('resize', setTabPosition);
+        return () => window.removeEventListener("resize", setTabPosition);
     }, [activeTabIndex]);
 
     const drawHeatMap = (shots: Shot[]) => {
-        const svg = d3.select('#heatmap')
-            .attr('viewBox', '-250 -47.5 500 470')
-            .attr('preserveAspectRatio', 'xMinYMin');
+        const svg = d3
+            .select("#heatmap")
+            .attr("viewBox", "-250 -47.5 500 470")
+            .attr("preserveAspectRatio", "xMinYMin");
 
-        svg.selectAll('*').remove(); // Clear previous elements
+        svg.selectAll("*").remove(); // Clear previous elements
 
         // Calculate scale for x and y coordinates
-        const xScale = d3.scaleLinear()
+        const xScale = d3
+            .scaleLinear()
             .domain([-250, 250]) // Standardized court dimensions
             .range([-250, 250]);
 
-        const yScale = d3.scaleLinear()
+        const yScale = d3
+            .scaleLinear()
             .domain([-47.5, 422.5]) // Standardized court dimensions
             .range([-47.5, 422.5]);
 
         // Prepare the data for density calculation
-        const densityData = d3.contourDensity<Shot>()
-            .x(d => xScale(d.loc_x))
-            .y(d => yScale(d.loc_y))
+        const densityData = d3
+            .contourDensity<Shot>()
+            .x((d) => xScale(d.loc_x))
+            .y((d) => yScale(d.loc_y))
             .size([500, 470])
-            .bandwidth(85)
-            (shots);
+            .bandwidth(85)(shots);
 
-        const maxDensityValue = d3.max(densityData, d => d.value) as number;
-        const colorScale = d3.scaleSequential(d3.interpolateRgb('white', '#FA4D00'))
+        const maxDensityValue = d3.max(densityData, (d) => d.value) as number;
+        const colorScale = d3
+            .scaleSequential(d3.interpolateRgb("white", "#FA4D00"))
             .domain([0, maxDensityValue]);
 
         // Draw the contour plot
-        svg.append('g')
-            .selectAll('path')
+        svg.append("g")
+            .selectAll("path")
             .data(densityData)
-            .enter().append('path')
-            .attr('fill', d => colorScale(d.value))
-            .attr('stroke', 'none')
-            .attr('d', d3.geoPath() as any);
+            .enter()
+            .append("path")
+            .attr("fill", (d) => colorScale(d.value))
+            .attr("stroke", "none")
+            .attr("d", d3.geoPath() as any);
 
         // Add the court background image
-        svg.append('image')
-            .attr('x', -250)
-            .attr('y', -47.5)
-            .attr('width', 500)
-            .attr('height', 470)
-            .attr('href', wnbaHalfCourtImage);
+        svg.append("image")
+            .attr("x", -250)
+            .attr("y", -47.5)
+            .attr("width", 500)
+            .attr("height", 470)
+            .attr("href", wnbaHalfCourtImage);
 
         // Draw all shots as yellow circles
-        svg.selectAll('.shot')
+        svg.selectAll(".shot")
             .data(shots)
             .enter()
-            .append('circle')
-            .attr('class', 'shot')
-            .attr('cx', d => xScale(d.loc_x))
-            .attr('cy', d => yScale(d.loc_y))
-            .attr('r', 3)
-            .attr('fill', 'yellow')
-            .attr('stroke', 'none');
+            .append("circle")
+            .attr("class", "shot")
+            .attr("cx", (d) => xScale(d.loc_x))
+            .attr("cy", (d) => yScale(d.loc_y))
+            .attr("r", 3)
+            .attr("fill", "yellow")
+            .attr("stroke", "none");
     };
 
     const drawShotPlot = (shots: Shot[]) => {
-        const svg = d3.select('#heatmap')
-            .attr('viewBox', '-250 -47.5 500 470')
-            .attr('preserveAspectRatio', 'xMinYMin');
+        const svg = d3
+            .select("#heatmap")
+            .attr("viewBox", "-250 -47.5 500 470")
+            .attr("preserveAspectRatio", "xMinYMin");
 
-        svg.selectAll('*').remove(); // Clear previous elements
+        svg.selectAll("*").remove(); // Clear previous elements
 
         // Add the court background image
-        svg.append('image')
-            .attr('x', -250)
-            .attr('y', -47.5)
-            .attr('width', 500)
-            .attr('height', 470)
-            .attr('href', wnbaHalfCourtImage);
+        svg.append("image")
+            .attr("x", -250)
+            .attr("y", -47.5)
+            .attr("width", 500)
+            .attr("height", 470)
+            .attr("href", wnbaHalfCourtImage);
 
         // Calculate scale for x and y coordinates
-        const xScale = d3.scaleLinear()
+        const xScale = d3
+            .scaleLinear()
             .domain([-250, 250]) // Standardized court dimensions
             .range([-250, 250]);
 
-        const yScale = d3.scaleLinear()
+        const yScale = d3
+            .scaleLinear()
             .domain([-47.5, 422.5]) // Standardized court dimensions
             .range([-47.5, 422.5]);
 
-        const shotsGroup = svg.append('g')
-            .attr('class', 'shotplot__shots');
+        const shotsGroup = svg.append("g").attr("class", "shotplot__shots");
 
         // Plot green circles and red exes for shots made and shots missed
-        shotsGroup.selectAll('g.shotplot__shot')
+        shotsGroup
+            .selectAll("g.shotplot__shot")
             .data(shots)
             .enter()
-            .append('g')
-            .attr('class', 'shotplot__shot')
-            .attr('transform', d => `translate(${xScale(d.loc_x)}, ${yScale(d.loc_y)})`)
+            .append("g")
+            .attr("class", "shotplot__shot")
+            .attr(
+                "transform",
+                (d) => `translate(${xScale(d.loc_x)}, ${yScale(d.loc_y)})`
+            )
             .each(function (d) {
                 const group = d3.select(this);
                 if (d.shot_made) {
-                    group.append('circle')
-                        .attr('r', 5)
-                        .attr('fill', 'none')
-                        .attr('stroke', 'green')
-                        .attr('stroke-width', 2);
+                    group
+                        .append("circle")
+                        .attr("r", 5)
+                        .attr("fill", "none")
+                        .attr("stroke", "green")
+                        .attr("stroke-width", 2);
                 } else {
-                    group.append('line')
-                        .attr('x1', -4)
-                        .attr('x2', 4)
-                        .attr('y1', -4)
-                        .attr('y2', 4)
-                        .attr('stroke', 'red')
-                        .attr('stroke-width', 2)
-                        .attr('stroke-linecap', 'round');
-                    group.append('line')
-                        .attr('x1', 4)
-                        .attr('x2', -4)
-                        .attr('y1', -4)
-                        .attr('y2', 4)
-                        .attr('stroke', 'red')
-                        .attr('stroke-width', 2)
-                        .attr('stroke-linecap', 'round');
+                    group
+                        .append("line")
+                        .attr("x1", -4)
+                        .attr("x2", 4)
+                        .attr("y1", -4)
+                        .attr("y2", 4)
+                        .attr("stroke", "red")
+                        .attr("stroke-width", 2)
+                        .attr("stroke-linecap", "round");
+                    group
+                        .append("line")
+                        .attr("x1", 4)
+                        .attr("x2", -4)
+                        .attr("y1", -4)
+                        .attr("y2", 4)
+                        .attr("stroke", "red")
+                        .attr("stroke-width", 2)
+                        .attr("stroke-linecap", "round");
                 }
             });
     };
 
-    const handleTabClick = (index: number, viewType: 'heatmap' | 'shotplot') => {
+    const handleTabClick = (
+        index: number,
+        viewType: "heatmap" | "shotplot"
+    ) => {
         setActiveTabIndex(index);
         setView(viewType);
     };
@@ -200,22 +220,20 @@ function PlayerShots() {
     }
 
     return (
-        <div className='mt-10 mb-10'>
-            <h1 className='font-bold text-2xl md:text-4xl mb-4'>Shooting</h1>
+        <div className="mt-10 mb-10">
+            <h1 className="font-bold text-2xl md:text-4xl mb-4">Shooting</h1>
             <div className="mb-4 relative">
-                <div className='flex gap-4'>
+                <div className="flex gap-4">
                     <button
                         className="py-2 mr-2 text-wOrange font-bold text-sm"
                         ref={(el) => (tabsRef.current[0] = el)}
-                        onClick={() => handleTabClick(0, 'shotplot')}
-                    >
+                        onClick={() => handleTabClick(0, "shotplot")}>
                         SHOT PLOT
                     </button>
                     <button
                         className="py-2 text-wOrange font-bold text-sm"
                         ref={(el) => (tabsRef.current[1] = el)}
-                        onClick={() => handleTabClick(1, 'heatmap')}
-                    >
+                        onClick={() => handleTabClick(1, "heatmap")}>
                         HEATMAP
                     </button>
                 </div>
@@ -224,7 +242,7 @@ function PlayerShots() {
                     style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
                 />
             </div>
-            <svg className='w-2/3' id="heatmap"></svg>
+            <svg className="w-2/3" id="heatmap"></svg>
         </div>
     );
 }

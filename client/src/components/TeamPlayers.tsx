@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
+import playersData from "../data/players.json";
 
 const TeamPlayers: React.FC = () => {
     const { teamId } = useParams<{ teamId: string }>();
@@ -13,9 +14,9 @@ const TeamPlayers: React.FC = () => {
         number: number;
         exp: number;
         hcc: string;
-        player_id: string;
+        player_id: string | number;
         height: string;
-        weight: string;
+        weight: string | number;
         dob: string;
     }
 
@@ -23,19 +24,23 @@ const TeamPlayers: React.FC = () => {
 
     const location = useLocation();
     const savedState = localStorage.getItem("teamData");
-    const { logo } = location.state || (savedState && JSON.parse(savedState)) || '';
+    const { logo } =
+        location.state || (savedState && JSON.parse(savedState)) || "";
 
     useEffect(() => {
-        const fetchPlayers = async () => {
+        const fetchPlayers = () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/${teamId}/players`);
-                if (!response.ok) {
-                    throw new Error("Failed to fetch players");
+                const teamPlayers = playersData.filter(
+                    (player) => player.team_id.toString() === teamId
+                );
+
+                if (teamPlayers.length === 0) {
+                    throw new Error("No players found for this team");
                 }
-                const data: Player[] = await response.json();
-                setPlayers(data);
+
+                setPlayers(teamPlayers);
             } catch (error) {
-                console.error("Error fetching players:", error);
+                console.error("Error loading players:", error);
             }
         };
 
@@ -63,32 +68,45 @@ const TeamPlayers: React.FC = () => {
                                     key={index}
                                     className="group relative hover:border-t-2 hover:border-b-2 border-gray-200 hover:font-bold hover:text-xl cursor-pointer"
                                     onClick={() =>
-                                        navigate(`/player/${player.player_id}`, {
-                                            state: {
-                                                dob: player.dob,
-                                                height: player.height,
-                                                weight: player.weight,
-                                                prior: player.hcc,
-                                                pos: player.pos,
-                                                exp: player.exp,
-                                                name: player.first_name + " " + player.last_name,
-                                                number: player.number,
-                                                teamLogo: logo,
-                                                teamId: teamId,
-                                            },
-                                        })
-                                    }
-                                >
+                                        navigate(
+                                            `/player/${player.player_id}`,
+                                            {
+                                                state: {
+                                                    dob: player.dob,
+                                                    height: player.height,
+                                                    weight: player.weight,
+                                                    prior: player.hcc,
+                                                    pos: player.pos,
+                                                    exp: player.exp,
+                                                    name:
+                                                        player.first_name +
+                                                        " " +
+                                                        player.last_name,
+                                                    number: player.number,
+                                                    teamLogo: logo,
+                                                    teamId: teamId,
+                                                },
+                                            }
+                                        )
+                                    }>
                                     <td className="py-2 pr-4 w-1/3">
                                         {player.first_name} {player.last_name}
                                         <div className="hidden absolute left-[-50px] top-1/2 transform -translate-y-1/2 bg-wOrange pl-5 pr-2 py-1 rounded-2xl text-white md:group-hover:block">
                                             <FaArrowRight />
                                         </div>
                                     </td>
-                                    <td className="text-right py-2">{player.number}</td>
-                                    <td className="text-right py-2">{player.pos}</td>
-                                    <td className="text-right py-2">{player.exp}</td>
-                                    <td className="text-right py-2 pl-4 w-1/3">{player.hcc}</td>
+                                    <td className="text-right py-2">
+                                        {player.number}
+                                    </td>
+                                    <td className="text-right py-2">
+                                        {player.pos}
+                                    </td>
+                                    <td className="text-right py-2">
+                                        {player.exp}
+                                    </td>
+                                    <td className="text-right py-2 pl-4 w-1/3">
+                                        {player.hcc}
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Game } from "../types/Game";
-
+import gamesData from "../data/games.json";
 import UpcomingGames from "./UpcomingGames";
 import PreviousGames from "./PreviousGames";
 
@@ -11,16 +11,26 @@ const TeamSchedule: React.FC = () => {
     const [games, setGames] = useState<Game[]>([]);
 
     useEffect(() => {
-        const fetchSchedule = async () => {
+        const fetchSchedule = () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/${teamId}/schedule`);
-                if (!response.ok) {
-                    throw new Error("Failed to fetch schedule");
+                const teamGames = gamesData.filter(
+                    (game) =>
+                        game.home_team_id.toString() === teamId ||
+                        game.away_team_id.toString() === teamId
+                );
+
+                if (teamGames.length === 0) {
+                    throw new Error("No games found for this team");
                 }
-                const data: Game[] = await response.json();
-                setGames(data.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()));
+
+                const sortedGames = teamGames.sort(
+                    (a, b) =>
+                        new Date(a.date).getTime() - new Date(b.date).getTime()
+                );
+
+                setGames(sortedGames);
             } catch (error) {
-                console.error("Error fetching schedule:", error);
+                console.error("Error loading schedule:", error);
             }
         };
 
@@ -33,10 +43,10 @@ const TeamSchedule: React.FC = () => {
 
     return (
         <>
-           <UpcomingGames games={games} />
-           <PreviousGames games={games} teamId={teamId} />
+            <UpcomingGames games={games} />
+            <PreviousGames games={games} teamId={teamId} />
         </>
     );
-}
+};
 
 export default TeamSchedule;

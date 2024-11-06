@@ -1,0 +1,122 @@
+[
+  {
+    "espn_id": 11,
+    "team_id": 1611661317,
+    "name": "Mercury",
+    "display_name": "Phoenix Mercury",
+    "abbreviation": "PHX",
+    "wins": 19,
+    "losses": 20,
+    "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/phx.png"
+  },
+  {
+    "espn_id": 14,
+    "team_id": 1611661328,
+    "name": "Storm",
+    "display_name": "Seattle Storm",
+    "abbreviation": "SEA",
+    "wins": 24,
+    "losses": 15,
+    "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/sea.png"
+  },
+  {
+    "espn_id": 16,
+    "team_id": 1611661322,
+    "name": "Mystics",
+    "display_name": "Washington Mystics",
+    "abbreviation": "WSH",
+    "wins": 13,
+    "losses": 26,
+    "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/wsh.png"
+  },
+  {
+    "espn_id": 17,
+    "team_id": 1611661319,
+    "name": "Aces",
+    "display_name": "Las Vegas Aces",
+    "abbreviation": "LV",
+    "wins": 26,
+    "losses": 13,
+    "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/lv.png"
+  },
+  {
+    "espn_id": 18,
+    "team_id": 1611661323,
+    "name": "Sun",
+    "display_name": "Connecticut Sun",
+    "abbreviation": "CONN",
+    "wins": 27,
+    "losses": 12,
+    "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/conn.png"
+  },
+  {
+    "espn_id": 19,
+    "team_id": 1611661329,
+    "name": "Sky",
+    "display_name": "Chicago Sky",
+    "abbreviation": "CHI",
+    "wins": 13,
+    "losses": 26,
+    "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/chi.png"
+  },
+  {
+    "espn_id": 20,
+    "team_id": 1611661330,
+    "name": "Dream",
+    "display_name": "Atlanta Dream",
+    "abbreviation": "ATL",
+    "wins": 14,
+    "losses": 25,
+    "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/atl.png"
+  },
+  {
+    "espn_id": 3,
+    "team_id": 1611661321,
+    "name": "Wings",
+    "display_name": "Dallas Wings",
+    "abbreviation": "DAL",
+    "wins": 9,
+    "losses": 30,
+    "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/dal.png"
+  },
+  {
+    "espn_id": 5,
+    "team_id": 1611661325,
+    "name": "Fever",
+    "display_name": "Indiana Fever",
+    "abbreviation": "IND",
+    "wins": 20,
+    "losses": 19,
+    "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/ind.png"
+  },
+  {
+    "espn_id": 6,
+    "team_id": 1611661320,
+    "name": "Sparks",
+    "display_name": "Los Angeles Sparks",
+    "abbreviation": "LA",
+    "wins": 7,
+    "losses": 32,
+    "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/la.png"
+  },
+  {
+    "espn_id": 8,
+    "team_id": 1611661324,
+    "name": "Lynx",
+    "display_name": "Minnesota Lynx",
+    "abbreviation": "MIN",
+    "wins": 30,
+    "losses": 9,
+    "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/min.png"
+  },
+  {
+    "espn_id": 9,
+    "team_id": 1611661313,
+    "name": "Liberty",
+    "display_name": "New York Liberty",
+    "abbreviation": "NY",
+    "wins": 32,
+    "losses": 7,
+    "logo": "https://a.espncdn.com/i/teamlogos/wnba/500/ny.png"
+  }
+]
