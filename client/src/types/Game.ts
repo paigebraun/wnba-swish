@@ -7,8 +7,8 @@ export interface Game {
     away_team_name: string,
     away_team_city: string,
     status: string,
-    home_score: string,
-    away_score: string,
+    home_score: string | number,
+    away_score: string | number,
     arena: string,
     arena_city: string,
     arena_state: string
